@@ -96,4 +96,5 @@ if [[ "$(uname)" == "Darwin" ]]; then 		# If we're using OSX/macOS
 	install_mac_apps
 
 elif [[ -f /etc/arch-release ]]; then		# If we're using ArchLinux
+	:
 fi
