@@ -13,11 +13,11 @@ BACKUP_ALL=false
 SKIP_ALL=false
 
 # Helper functions
-info () { printf "\r  [ \033[00;34m..\033[0m ] $1\n"; } 						# [ .. ] $1
-user () { printf "\r  [ \033[0;33m??\033[0m ] $1\n"; } 							# [ ?? ] $1
-alert () { printf "\r  [ \033[0;91m!!\033[0m ] $1\n"; } 						# [ !! ] $1
-success () { printf "\r\033[2K  [ \033[00;32mOK\033[0m ] $1\n"; } 				# [ OK ] $1
-fail () { printf "\r\033[2K  [\033[0;31mFAIL\033[0m] $1\n"; exit; } 	# [FAIL] #MSG
+info () { printf "\r  [ \033[00;34m..\033[0m ] $1\n"; } 			# [ .. ] $1
+user () { printf "\r  [ \033[0;33m??\033[0m ] $1\n"; } 				# [ ?? ] $1
+alert () { printf "\r  [ \033[0;91m!!\033[0m ] $1\n"; } 			# [ !! ] $1
+success () { printf "\r\033[2K  [ \033[00;32mOK\033[0m ] $1\n"; } 	# [ OK ] $1
+fail () { printf "\r\033[2K  [\033[0;31mFAIL\033[0m] $1\n"; exit; } # [FAIL] $1
 
 # Environment Setup
 install_dotfiles() {
