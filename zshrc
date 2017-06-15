@@ -18,6 +18,23 @@ alias ....="cd ../../.."
 alias .....="cd ../../../.."
 alias rmi="rm -i"
 
+#  Git aliases
+alias gs="git status"
+alias ga="git add"
+alias gcm="git commit -m"
+alias gp="git push"
+alias gl="git log --oneline"
+alias gc="git checkout"
+
+# Misc Aliases
+rand-string() {
+	if [ $1 ]; then
+		cat /dev/urandom | env LC_CTYPE=C tr -cd 'a-f0-9' | head -c $1
+	else
+		cat /dev/urandom | env LC_CTYPE=C tr -cd 'a-f0-9' | head -c 32
+	fi
+}
+
 # Easily access other config files
 config() {
 	case $1 in
