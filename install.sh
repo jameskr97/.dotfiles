@@ -92,6 +92,15 @@ install_mac_apps() {
 
 # ArchLinux Specific
 # TODO: Consider if makepkg lines should be supressed
+# TODO: Can I combine those into one method?
+install_pacman() {
+	if [[ -z $(pacman -Qs $1) ]]; then
+		info "Installing $1..."
+		sudo pacman --noconfirm --needed -S $1 &>/dev/null
+	else
+		alert "Skipping $1 install. It's already installed."
+	fi
+}
 install_aur_git () {
 	if [[ -z $(pacman -Qs $1) ]]; then
 		info "Installing $1..."
@@ -111,20 +120,21 @@ install_aur_helper() {
 	info "Emptying working directory..."
 	rm -rf $work_dir/*
 
-	info "Installing pacaur dependencies (expac, cower, yajl)..."
-	sudo pacman --noconfirm --needed -Sq expac yajl git >/dev/null
-
+	info "Installing pacaur dependencies..."
+	install_pacman expac
+	install_pacman yajl
+	install_pacman git
 	install_aur_git cower; cd $work_dir
 	install_aur_git pacaur;
 
 	info "Deleting working directory..."
-	rm -rf $working_dir
+	rm -rf $work_dir
 	success "Installed AUR Helper!"
 }
 
 # Linking dotfililes
-info "Linking Dotfiles..."
-install_dotfiles
+info "Linking universal dotfiles..."
+install_dotfiles dot_uni
 
 # OS Spexific actions
 if [[ "$(uname)" == "Darwin" ]]; then # If we're using OSX/macOS
