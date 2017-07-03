@@ -27,6 +27,7 @@ alias gpl="git pull"
 alias gl="git log --oneline"
 alias gc="git checkout"
 alias gf="git fetch"
+alias gd="git diff"
 
 # Misc Aliases
 rand-string() {
@@ -49,12 +50,16 @@ config() {
 }
 
 # Colorful commands
-alias ls="ls -FG"
-alias l="ls -lFh"
-alias la="ls -lAFh"
-alias ll="ls -l"
-alias grep="grep  --color=auto --exclude-dir={.bzr,CVS,.git,.hg,.svn}"
-
+if [[ "$(uname)" == "Darwin" ]]; then # macOS/OSX
+	alias ls="ls -FG"
+	alias ll="ls -lh"
+	alias la="ll -A"
+	alias grep="grep --color=auto --exclude-dir={.bzr,CVS,.git,.hg,.svn}"
+else # Ubuntu/Debian or Arch
+	alias ls="ls --color=auto -F"
+	alias ll="ls -ls"
+	alias la="ll -a"
+fi
 
 # All below here is from the prezto completion module.
 # Prezto is cool, but I only really wanted the completion from it.
