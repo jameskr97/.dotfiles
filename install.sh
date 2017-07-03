@@ -6,8 +6,8 @@
 # - To install Homebrew (Mac)
 
 # Setup Variables
-LINKDIR=$HOME
-DOTDIR=$(pwd)
+LINKDIR=$HOME # Not sure if this and the next line are the best way of doing this
+DOTDIR="$LINKDIR/.dotfiles" # but I'll go with it for now
 EXIST_DOT_BACKUP="$LINKDIR/.jsetup_backups"
 BACKUP_ALL=false
 SKIP_ALL=false
@@ -18,6 +18,7 @@ user () { printf "\r  [ \033[0;33m??\033[0m ] $1\n"; } 				# [ ?? ] $1
 alert () { printf "\r  [ \033[0;91m!!\033[0m ] $1\n"; } 			# [ !! ] $1
 success () { printf "\r\033[2K  [ \033[00;32mOK\033[0m ] $1\n"; } 	# [ OK ] $1
 fail () { printf "\r\033[2K  [\033[0;31mFAIL\033[0m] $1\n"; exit; } # [FAIL] $1
+mkcd () { mkdir -p $1; cd $1; }
 
 # Environment Setup
 install_dotfiles() {
@@ -89,6 +90,38 @@ install_mac_apps() {
 	exit
 }
 
+# ArchLinux Specific
+# TODO: Consider if makepkg lines should be supressed
+install_aur_git () {
+	if [[ -z $(pacman -Qs $1) ]]; then
+		info "Installing $1..."
+		git clone --quiet https://aur.archlinux.org/$1.git
+		cd $1
+		makepkg --skippgpcheck --install --needed --noconfirm &>/dev/null
+	else
+		alert "Skipping $1 install. It's already installed."
+	fi
+}
+
+install_aur_helper() {
+	local work_dir="$HOME/jdotwork"
+	info "Installing Pacaur..."
+	info "Creating a working directory ($work_dir)..."
+	mkcd $work_dir
+	info "Emptying working directory..."
+	rm -rf $work_dir/*
+
+	info "Installing pacaur dependencies (expac, cower, yajl)..."
+	sudo pacman --noconfirm --needed -Sq expac yajl git >/dev/null
+
+	install_aur_git cower; cd $work_dir
+	install_aur_git pacaur;
+
+	info "Deleting working directory..."
+	rm -rf $working_dir
+	success "Installed AUR Helper!"
+}
+
 # Linking dotfililes
 info "Linking Dotfiles..."
 install_dotfiles
@@ -111,7 +144,7 @@ if [[ "$(uname)" == "Darwin" ]]; then # If we're using OSX/macOS
 	install_mac_apps
 
 elif [[ -f /etc/arch-release ]]; then # If we're using ArchLinux
-	:
+	install_aur_helper
 elif [[ -f /etc/debian_version ]]; then # If we're using Ubuntu/Debian
 	:
 fi
