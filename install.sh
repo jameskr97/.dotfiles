@@ -163,6 +163,9 @@ if [[ "$(uname)" == "Darwin" ]]; then # If we're using OSX/macOS
 	install_mac_apps
 
 elif [[ -f /etc/arch-release ]]; then # If we're using ArchLinux
+	info "Linking Arch dotfiles..."
+	install_dotfiles ./dot_arch
+
 	install_aur_helper
 	install_x11
 elif [[ -f /etc/debian_version ]]; then # If we're using Ubuntu/Debian

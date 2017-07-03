@@ -1,0 +1,3 @@
+# Set display to proper resolution (this is VM specific though...)
+xrandr --output Virtual-1 --mode 1440x900 &
+
