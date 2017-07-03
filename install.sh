@@ -93,6 +93,7 @@ install_mac_apps() {
 # ArchLinux Specific
 # TODO: Consider if makepkg lines should be supressed
 # TODO: Can I combine those into one method?
+# TODO: Is it possible to be *too* verbose?
 install_pacman() {
 	if [[ -z $(pacman -Qs $1) ]]; then
 		info "Installing $1..."
@@ -132,6 +133,14 @@ install_aur_helper() {
 	success "Installed AUR Helper!"
 }
 
+install_x11(){
+	info "Installing xorg-server, xorg-xinit, xorg-xrandr..."
+	install_pacman xorg-server
+	install_pacman xorg-xinit
+	install_pacman xorg-xrandr
+	success "Installed X11 Display Server!"
+}
+
 # Linking dotfililes
 info "Linking universal dotfiles..."
 install_dotfiles dot_uni
@@ -155,6 +164,7 @@ if [[ "$(uname)" == "Darwin" ]]; then # If we're using OSX/macOS
 
 elif [[ -f /etc/arch-release ]]; then # If we're using ArchLinux
 	install_aur_helper
+	install_x11
 elif [[ -f /etc/debian_version ]]; then # If we're using Ubuntu/Debian
 	:
 fi
