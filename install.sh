@@ -83,18 +83,25 @@ install_mac_apps() {
 	exit
 }
 
+# Linking dotfililes
+info "Linking Dotfiles..."
+install_dotfiles
+
 # Download packages
-if [[ "$(uname)" == "Darwin" ]]; then 		# If we're using OSX/macOS
+if [[ "$(uname)" == "Darwin" ]]; then # If we're using OSX/macOS
 	# Create Applications folder in home
 	mkdir -p ~/Applications
 
+	# TODO: Check if XcodeCLT  is already installed
 	# Install Xcode Command line tools
-	#info "Installing command line tools..."
-	#xcode-select --install &> /dev/null
+	info "Installing command line tools..."
+	xcode-select --install &> /dev/null
 
 	install_homebrew
 	install_mac_apps
 
-elif [[ -f /etc/arch-release ]]; then		# If we're using ArchLinux
+elif [[ -f /etc/arch-release ]]; then # If we're using ArchLinux
+	:
+elif [[ -f /etc/debian_version ]]; then # If we're using Ubuntu/Debian
 	:
 fi
