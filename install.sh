@@ -22,18 +22,24 @@ fail () { printf "\r\033[2K  [\033[0;31mFAIL\033[0m] $1\n"; exit; } # [FAIL] $1
 # Environment Setup
 install_dotfiles() {
 	# $0 to ignore this running file
-	local IGNORE=("install.sh" ".git" ".gitignore" ".gitmodules" "README.md" ".DS_Store")
-
-	for file_abs in $(find $DOTDIR -mindepth 1 -maxdepth 1 | sort) # For every file in $DOTDIR
+	local IGNORE=("install.sh" ".git" ".gitignore" ".gitmodules" "README.md" ".DS_Store" "dot_macos")
+	
+	dir_to_link=$DOTDIR
+	if [ $1 ]; then
+		local abs_dir=$(cd $1; pwd)	
+		dir_to_link="$abs_dir"
+	fi
+	
+	for file_abs in $(find $dir_to_link -mindepth 1 -maxdepth 1 | sort) # For every file in $dir_to_link
 	do
 		file=$(basename $file_abs)
 		if [[ "${IGNORE[@]}" =~ "$file" ]]; then continue; fi # Continue if it's being ignored
 		dotlink="$LINKDIR/.$file" # Create intended file link location
 
 		if [[ -e $dotlink ]]; then # Check if file/folder already exists
-			# Here, we check if $dotlink is a symbolic file, and if the link location is the same as a file in our $DOTDIR directory.
+			# Here, we check if $dotlink is a symbolic file, and if the link location is the same as a file in our $dir_to_link directory.
 			# If all is true, the continue, because it's already linked.
-			if [[ -L $dotlink && "$(readlink $dotlink)" == "$DOTDIR/$file" ]]; then info "$file already linked..."; continue; fi
+			if [[ -L $dotlink && "$(readlink $dotlink)" == "$dir_to_link/$file" ]]; then info "$file already linked..."; continue; fi
 
 			if [[ "$SKIP_ALL" == true ]]; then alert "Skipping $file"; continue; fi 	# Uphold skip all
 			if [[ "$BACKUP_ALL" == false ]]; then										# Skip query and go straight to backup
@@ -50,6 +56,7 @@ install_dotfiles() {
 		ln -s "$file_abs" "$dotlink" 	# Link the files!
 		success "$file linked!" 		# Alert of link
 	done
+	success "Linked $dir_to_link files!" 
 }
 
 # OSX Setup Functions
@@ -72,8 +79,7 @@ install_homebrew() {
 }
 install_mac_apps() {
 	info "Installing Cask application..."
-	local APPS=("google-chrome" "discord" "iterm2" "transmission" "skype"\
-	"steam" "ubersicht")
+	local APPS=("google-chrome" "discord" "iterm2" "transmission" "skype" "steam" "ubersicht")
 
 	for app in ${APPS[@]}; do
 		info "Installing $app..."; brew cask install "$app" &>/dev/null
@@ -87,18 +93,21 @@ install_mac_apps() {
 info "Linking Dotfiles..."
 install_dotfiles
 
-# Download packages
+# OS Spexific actions
 if [[ "$(uname)" == "Darwin" ]]; then # If we're using OSX/macOS
+	# Add Darwin specific dotifles	
+	info "Linking Darwin dotfiles..."
+	install_dotfiles ./dot_macos
 	# Create Applications folder in home
 	mkdir -p ~/Applications
 
 	# TODO: Check if XcodeCLT  is already installed
 	# Install Xcode Command line tools
 	info "Installing command line tools..."
-	xcode-select --install &> /dev/null
+#	xcode-select --install &> /dev/null
 
-	install_homebrew
-	install_mac_apps
+#	install_homebrew
+#	install_mac_apps
 
 elif [[ -f /etc/arch-release ]]; then # If we're using ArchLinux
 	:
