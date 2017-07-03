@@ -93,7 +93,7 @@ install_mac_apps() {
 # ArchLinux Specific
 # TODO: Consider if makepkg lines should be supressed
 # TODO: Can I combine those into one method?
-# TODO: Is it possible to be *too* verbose?
+
 install_pacman() {
 	if [[ -z $(pacman -Qs $1) ]]; then
 		info "Installing $1..."
@@ -134,7 +134,7 @@ install_aur_helper() {
 }
 
 install_x11(){
-	info "Installing xorg-server, xorg-xinit, xorg-xrandr..."
+	info "Installing X11 Display server..."
 	install_pacman xorg-server
 	install_pacman xorg-xinit
 	install_pacman xorg-xrandr
