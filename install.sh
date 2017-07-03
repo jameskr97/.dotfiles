@@ -98,16 +98,17 @@ if [[ "$(uname)" == "Darwin" ]]; then # If we're using OSX/macOS
 	# Add Darwin specific dotifles	
 	info "Linking Darwin dotfiles..."
 	install_dotfiles ./dot_macos
+	exit # Temporary
 	# Create Applications folder in home
 	mkdir -p ~/Applications
 
 	# TODO: Check if XcodeCLT  is already installed
 	# Install Xcode Command line tools
 	info "Installing command line tools..."
-#	xcode-select --install &> /dev/null
+	xcode-select --install &> /dev/null
 
-#	install_homebrew
-#	install_mac_apps
+	install_homebrew
+	install_mac_apps
 
 elif [[ -f /etc/arch-release ]]; then # If we're using ArchLinux
 	:
