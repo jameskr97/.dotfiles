@@ -23,8 +23,10 @@ alias gs="git status"
 alias ga="git add"
 alias gcm="git commit -m"
 alias gp="git push"
+alias gpl="git pull"
 alias gl="git log --oneline"
 alias gc="git checkout"
+alias gf="git fetch"
 
 # Misc Aliases
 rand-string() {
