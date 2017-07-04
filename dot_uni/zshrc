@@ -28,6 +28,7 @@ alias gl="git log --oneline"
 alias gc="git checkout"
 alias gf="git fetch"
 alias gd="git diff"
+alias gb="git branch"
 
 # Misc Aliases
 rand-string() {
@@ -40,21 +41,27 @@ rand-string() {
 
 # Easily access other config files
 config() {
+	local DOTUNI="${DOTHOME}/dot_uni"
+	local DOTOSX="${DOTHOME}/dot_macos"
+	local DOTARCH="${DOTHOME}/dot_arch"
 	case $1 in
-		zsh) vim ${DOTHOME}/zshrc && source ~/.zshrc ;;
-		zshenv)	vim ${DOTHOME}/zshenv && source ~/.zshenv ;;
-		vim) vim ${DOTHOME}/vimrc ;;
-		kwm) vim ${DOTHOME}/kwm/kwmrc ;;
-		khd) vim ${DOTHOME}/khdrc
+		# Universal
+		zsh) vim ${DOTUNI}/zshrc && source ~/.zshrc ;;
+		zshenv)	vim ${DOTUNI}/zshenv && source ~/.zshenv ;;
+		vim) vim ${DOTUNI}/vimrc ;;
+
+		# OSX
+		kwm) vim ${DOTOSX}/kwm/kwmrc ;;
+		khd) vim ${DOTOSX}/khdrc ;;
 	esac
 }
 
 # Colorful commands
-if [[ "$(uname)" == "Darwin" ]]; then # macOS/OSX
+alias grep="grep --color=auto --exclude-dir={.bzr,CVS,.git,.hg,.svn}"
+if [[ "$(uname)" == "Darwin" ]]; then # macOS/OSX/FreeBSD
 	alias ls="ls -FG"
 	alias ll="ls -lh"
 	alias la="ll -A"
-	alias grep="grep --color=auto --exclude-dir={.bzr,CVS,.git,.hg,.svn}"
 else # Ubuntu/Debian or Arch
 	alias ls="ls --color=auto -F"
 	alias ll="ls -ls"
