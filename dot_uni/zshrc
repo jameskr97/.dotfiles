@@ -68,6 +68,10 @@ else # Ubuntu/Debian or Arch
 	alias la="ll -a"
 fi
 
+if [[ -f /etc/arch-release ]]; then # Arch specific aliases
+	alias set_wallpaper="feh --no-fehbg --bg-fill"
+fi
+
 # All below here is from the prezto completion module.
 # Prezto is cool, but I only really wanted the completion from it.
 # Group matches and describe.

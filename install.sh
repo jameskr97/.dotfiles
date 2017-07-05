@@ -99,7 +99,7 @@ install_pacman() {
 		info "Installing $1..."
 		sudo pacman --noconfirm --needed -S $1 &>/dev/null
 	else
-		alert "Skipping $1 install. It's already installed."
+		alert "$1 already installed. Skipping..."
 	fi
 }
 install_aur_git () {
@@ -109,7 +109,7 @@ install_aur_git () {
 		cd $1
 		makepkg --skippgpcheck --install --needed --noconfirm &>/dev/null
 	else
-		alert "Skipping $1 install. It's already installed."
+		alert "$1 already installed. Skipping..."
 	fi
 }
 
@@ -138,6 +138,7 @@ install_x11(){
 	install_pacman xorg-server
 	install_pacman xorg-xinit
 	install_pacman xorg-xrandr
+	install_pacman feh # Not apart of the server... but best category
 	success "Installed X11 Display Server!"
 }
 
