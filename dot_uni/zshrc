@@ -53,6 +53,9 @@ config() {
 		# OSX
 		kwm) vim ${DOTOSX}/kwm/kwmrc ;;
 		khd) vim ${DOTOSX}/khdrc ;;
+
+		# Arch
+		xres) vim ${DOTARCH}/Xresources && xrdb ~/.Xresources
 	esac
 }
 

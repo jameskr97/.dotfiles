@@ -8,5 +8,5 @@ export EDITOR="/usr/bin/vim"
 if [[ "$(uname)"  == "Darwin" ]]; then		# If our OS is OSX...
 	export HOMEBREW_CASK_OPTS="--appdir=~/Applications --fontdir=/Library/Fonts" 	# Set hombrew options...
 elif [[ -f /etc/arch-release ]]; then
-	export XDG_CONFIG_HOME="$HOME/.config/"
+	export XDG_CONFIG_HOME="$HOME/.config"
 fi
