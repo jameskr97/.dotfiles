@@ -21,6 +21,7 @@ alias rmi="rm -i"
 #  Git aliases
 alias gs="git status"
 alias ga="git add"
+alias gap="git add --patch"
 alias gcm="git commit -m"
 alias gp="git push"
 alias gpl="git pull"
@@ -47,7 +48,7 @@ config() {
 	case $1 in
 		# Universal
 		zsh) vim ${DOTUNI}/zshrc && source ~/.zshrc ;;
-		zshenv)	vim ${DOTUNI}/zshenv && source ~/.zshenv ;;
+		zshenv) vim ${DOTUNI}/zshenv && source ~/.zshenv ;;
 		vim) vim ${DOTUNI}/vimrc ;;
 
 		# OSX
@@ -55,7 +56,8 @@ config() {
 		khd) vim ${DOTOSX}/khdrc ;;
 
 		# Arch
-		xres) vim ${DOTARCH}/Xresources && xrdb ~/.Xresources
+		xres) vim ${DOTARCH}/Xresources && xrdb ~/.Xresources ;;
+		i3) vim ${DOTARCH}/config/i3/config ;;
 	esac
 }
 
