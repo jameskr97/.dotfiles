@@ -58,23 +58,24 @@ config() {
 		# Arch
 		xres) vim ${DOTARCH}/Xresources && xrdb ~/.Xresources ;;
 		i3) vim ${DOTARCH}/config/i3/config ;;
+		xinit) vim ${DOTARCH}/xinitrc
 	esac
 }
 
-# Colorful commands
+# OS specific commands
 alias grep="grep --color=auto --exclude-dir={.bzr,CVS,.git,.hg,.svn}"
 if [[ "$(uname)" == "Darwin" ]]; then # macOS/OSX/FreeBSD
 	alias ls="ls -FG"
 	alias ll="ls -lh"
 	alias la="ll -A"
-else # Ubuntu/Debian or Arch
+else # Ubuntu/Debian and Arch
 	alias ls="ls --color=auto -F"
 	alias ll="ls -ls"
 	alias la="ll -a"
 fi
 
 if [[ -f /etc/arch-release ]]; then # Arch specific aliases
-	alias set_wallpaper="feh --no-fehbg --bg-fill"
+	alias set_wallpaper="feh --bg-fill"
 fi
 
 # All below here is from the prezto completion module.
