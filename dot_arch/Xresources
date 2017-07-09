@@ -2,7 +2,7 @@
 
 ! URxvt customization
 URxvt.scrollBar: false
-URxvt.font: xft:monaco:size=12
+URxvt.font: xft:Inconsolata:size=14:antialias=true
 
 
 ! Colors
@@ -17,7 +17,8 @@ URxvt.font: xft:monaco:size=12
 
 ! Red
 *.color1:       #cc0403
-*.color9:       #3e0605
+*.color9:      	#FF0000 
+!#3e0605
 
 ! Green
 *.color2:       #19cb00

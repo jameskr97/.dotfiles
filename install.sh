@@ -92,7 +92,6 @@ install_mac_apps() {
 
 # ArchLinux Specific
 # TODO: Consider if makepkg lines should be supressed
-# TODO: Can I combine those into one method?
 
 install_pacman() {
 	if [[ -z $(pacman -Qs $1) ]]; then
@@ -102,6 +101,16 @@ install_pacman() {
 		alert "$1 already installed. Skipping..."
 	fi
 }
+
+install_pacaur(){
+	if [[ -z $(pacman -Qs $1) ]]; then
+		info "Installing $1 via pacaur..."
+		sudo pacaur --noconfigm --needed --noedit -S $1
+	else
+		alert "$1 already installed. Skipping..."
+	fi
+}
+
 install_aur_git () {
 	if [[ -z $(pacman -Qs $1) ]]; then
 		info "Installing $1..."
@@ -142,6 +151,16 @@ install_x11(){
 	success "Installed X11 Display Server!"
 }
 
+install_fonts(){
+	# Note on fonts: To see the system font name, use fc-list
+	info "Installing fonts..."
+	install_pacman ttf-hack
+	install_pacman ttf-inconsolata
+	install_pacman adobe-source-code-pro-fonts
+	install_pacaur otf-san-francisco
+	success "Installed fonts!"
+}
+
 # Linking dotfililes
 info "Linking universal dotfiles..."
 install_dotfiles dot_uni
@@ -169,6 +188,7 @@ elif [[ -f /etc/arch-release ]]; then # If we're using ArchLinux
 
 	install_aur_helper
 	install_x11
+	install_fonts
 elif [[ -f /etc/debian_version ]]; then # If we're using Ubuntu/Debian
 	:
 fi

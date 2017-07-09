@@ -8,6 +8,12 @@ local prompt_string="»"
 local return_status="%(?:%{$fg[blue]%}$prompt_string:%{$fg[red]%}$prompt_string)"
 PROMPT="$host_name $path_string $prompt_string "
 
+# Command history
+HISTSIZE=1000
+SAVEHIST=1000
+HISTFILE=~/.zsh_history
+setopt EXTENDED_HISTORY
+
 #Autocompletion
 fpath=(/usr/local/share/zsh-completions $fpath)
 
