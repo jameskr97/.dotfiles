@@ -105,7 +105,7 @@ install_pacman() {
 install_pacaur(){
 	if [[ -z $(pacman -Qs $1) ]]; then
 		info "Installing $1 via pacaur..."
-		sudo pacaur --noconfigm --needed --noedit -S $1
+		pacaur --noconfirm --needed -S $1 &>/dev/null
 	else
 		alert "$1 already installed. Skipping..."
 	fi
@@ -161,6 +161,10 @@ install_fonts(){
 	success "Installed fonts!"
 }
 
+
+# START OF SCRIPT
+sudo -v
+
 # Linking dotfililes
 info "Linking universal dotfiles..."
 install_dotfiles dot_uni
@@ -183,6 +187,9 @@ if [[ "$(uname)" == "Darwin" ]]; then # If we're using OSX/macOS
 	install_mac_apps
 
 elif [[ -f /etc/arch-release ]]; then # If we're using ArchLinux
+	info "Updating arch system..."
+	sudo pacman -Syu --noconfirm &>/dev/null
+
 	info "Linking Arch dotfiles..."
 	install_dotfiles ./dot_arch
 
