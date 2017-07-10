@@ -159,7 +159,12 @@ install_fonts(){
 }
 
 install_arch_programs(){
+	install_pacman zsh
 	install_pacman rxvt-unicode
+	install_pacman vim
+
+	info "Changing shell to zsh..."
+	chsh -s $(which zsh)
 }
 
 # START OF SCRIPT
