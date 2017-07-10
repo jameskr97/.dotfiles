@@ -123,13 +123,10 @@ install_aur_git () {
 }
 
 install_aur_helper() {
-	local work_dir="$HOME/jdotwork"
+	local work_dir="$(mktemp -d)"
+	cd $work_dir
 	info "Installing Pacaur..."
-	info "Creating a working directory ($work_dir)..."
-	mkcd $work_dir
-	info "Emptying working directory..."
-	rm -rf $work_dir/*
-
+	info "Using working directory $work_dir..."
 	info "Installing pacaur dependencies..."
 	install_pacman expac
 	install_pacman yajl
@@ -161,6 +158,9 @@ install_fonts(){
 	success "Installed fonts!"
 }
 
+install_arch_programs(){
+	install_pacman rxvt-unicode
+}
 
 # START OF SCRIPT
 sudo -v
@@ -196,6 +196,7 @@ elif [[ -f /etc/arch-release ]]; then # If we're using ArchLinux
 	install_aur_helper
 	install_x11
 	install_fonts
+	install_arch_programs
 elif [[ -f /etc/debian_version ]]; then # If we're using Ubuntu/Debian
 	:
 fi
