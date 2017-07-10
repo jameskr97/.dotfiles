@@ -7,6 +7,7 @@ local path_string="%F{yellow}%1~%f"
 local prompt_string="»"
 local return_status="%(?:%{$fg[blue]%}$prompt_string:%{$fg[red]%}$prompt_string)"
 PROMPT="$host_name $path_string $prompt_string "
+RPROMPT="%T"
 
 # Command history
 HISTSIZE=1000
@@ -76,7 +77,7 @@ alias grep="grep --color=auto --exclude-dir={.bzr,CVS,.git,.hg,.svn}"
 if [[ "$(uname)" == "Darwin" ]]; then # macOS/OSX/FreeBSD
 	alias ls="ls -FG"
 	alias ll="ls -lh"
-	alias la="ll -A"
+	alias la="ll -a"
 else # Ubuntu/Debian and Arch
 	alias ls="ls --color=auto -F"
 	alias ll="ls -ls"
