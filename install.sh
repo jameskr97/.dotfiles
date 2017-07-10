@@ -105,7 +105,7 @@ install_pacman() {
 install_pacaur(){
 	if [[ -z $(pacman -Qs $1) ]]; then
 		info "Installing $1 via pacaur..."
-		pacaur --noconfirm --needed -S $1 &>/dev/null
+		pacaur --noconfirm --needed --noedit -S $1 &>/dev/null
 	else
 		alert "$1 already installed. Skipping..."
 	fi
