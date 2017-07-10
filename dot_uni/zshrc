@@ -14,7 +14,10 @@ SAVEHIST=1000
 HISTFILE=~/.zsh_history
 setopt EXTENDED_HISTORY
 
-#Autocompletion
+# Command Correction
+setopt correct
+
+# Autocompletion
 fpath=(/usr/local/share/zsh-completions $fpath)
 
 # Aliases
