@@ -118,16 +118,17 @@ install_aur_helper() {
 	success "Installed AUR Helper!"
 }
 
-install_x11(){
+install_system_desired(){
+	info "Installing drivers..."
+	install_pacman nvidia
+
 	info "Installing X11 Display server..."
 	install_pacman xorg-server
 	install_pacman xorg-xinit
 	install_pacman xorg-xrandr
 	install_pacman feh # Not apart of the server... but best category
 	success "Installed X11 Display Server!"
-}
 
-install_fonts(){
 	# Note on fonts: To see the system font name, use fc-list
 	info "Installing fonts..."
 	install_pacman ttf-hack
@@ -135,15 +136,19 @@ install_fonts(){
 	install_pacman adobe-source-code-pro-fonts
 	install_pacaur otf-san-francisco
 	success "Installed fonts!"
-}
 
-install_arch_programs(){
+	info "Installing arch specific programs..."
 	install_pacman zsh
 	install_pacman rxvt-unicode
 	install_pacman vim
-
-	info "Changing shell to zsh..."
-	chsh -s $(which zsh)
+	install_pacaur bspwm-git
+	install_pacaur sxhkd-git
+	install_pacaur neofetch
+	# Check users shell
+	if [[ "$SHELL" != $(which zsh) ]]; then
+		info "Changing shell to zsh..."
+		chsh -s $(which zsh)
+	fi
 }
 
 # Linking dotfililes
@@ -173,9 +178,7 @@ elif [[ -f /etc/arch-release ]]; then # If we're using ArchLinux
 
 	info "Linking Arch dotfiles..."
 	install_dotfiles_stow dot_arch
-
+		
 	install_aur_helper
-	install_x11
-	install_fonts
-	install_arch_programs
+	install_system_desired
 fi
