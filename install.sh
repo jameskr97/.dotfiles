@@ -10,12 +10,11 @@ LINKDIR=$HOME # Not sure if this and the next line are the best way of doing thi
 DOTDIR="$LINKDIR/.dotfiles" # but I'll go with it for now
 
 # Helper functions
-info () { printf "\r  [ \033[00;34m..\033[0m ] $1\n"; } 			# [ .. ] $1
-user () { printf "\r  [ \033[0;33m??\033[0m ] $1\n"; } 				# [ ?? ] $1
-alert () { printf "\r  [ \033[0;91m!!\033[0m ] $1\n"; } 			# [ !! ] $1
-success () { printf "\r\033[2K  [ \033[00;32mOK\033[0m ] $1\n"; } 	# [ OK ] $1
+info () { printf "\r  [ \033[00;34m..\033[0m ] $1\n"; } # [ .. ] $1
+user () { printf "\r  [ \033[0;33m??\033[0m ] $1\n"; } # [ ?? ] $1
+alert () { printf "\r  [ \033[0;91m!!\033[0m ] $1\n"; } # [ !! ] $1
+success () { printf "\r\033[2K  [ \033[00;32mOK\033[0m ] $1\n"; } # [ OK ] $1
 fail () { printf "\r\033[2K  [\033[0;31mFAIL\033[0m] $1\n"; exit; } # [FAIL] $1
-mkcd () { mkdir -p $1; cd $1; }
 
 # Environment Setup
 # First argument is the folder with things inside to link to home directory
@@ -73,8 +72,6 @@ install_mac_apps() {
 }
 
 # ArchLinux Specific
-# TODO: Consider if makepkg lines should be supressed
-
 install_pacman() {
 	if [[ -z $(pacman -Qs $1) ]]; then
 		info "Installing $1..."
@@ -148,9 +145,6 @@ install_arch_programs(){
 	info "Changing shell to zsh..."
 	chsh -s $(which zsh)
 }
-
-# START OF SCRIPT
-sudo -v
 
 # Linking dotfililes
 info "Linking universal dotfiles..."
