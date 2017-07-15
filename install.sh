@@ -8,9 +8,6 @@
 # Setup Variables
 LINKDIR=$HOME # Not sure if this and the next line are the best way of doing this
 DOTDIR="$LINKDIR/.dotfiles" # but I'll go with it for now
-EXIST_DOT_BACKUP="$LINKDIR/.jsetup_backups"
-BACKUP_ALL=false
-SKIP_ALL=false
 
 # Helper functions
 info () { printf "\r  [ \033[00;34m..\033[0m ] $1\n"; } 			# [ .. ] $1
@@ -163,7 +160,7 @@ install_dotfiles_stow dot_uni
 if [[ "$(uname)" == "Darwin" ]]; then # If we're using OSX/macOS
 	# Add Darwin specific dotifles
 	info "Linking Darwin dotfiles..."
-	install_dotfiles ./dot_macos
+	install_dotfiles_stow dot_macos
 	exit # Temporary
 	# Create Applications folder in home
 	mkdir -p ~/Applications
@@ -181,7 +178,7 @@ elif [[ -f /etc/arch-release ]]; then # If we're using ArchLinux
 	sudo pacman -Syu --noconfirm &>/dev/null
 
 	info "Linking Arch dotfiles..."
-	install_dotfiles ./dot_arch
+	install_dotfiles_stow dot_arch
 
 	install_aur_helper
 	install_x11

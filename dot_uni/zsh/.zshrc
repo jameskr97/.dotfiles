@@ -2,7 +2,8 @@
 # James Roberts
 
 # Prompt
-local host_name="%F{cyan}Σ%f"
+local hn="λ"
+local host_name="%F{cyan}$hn%f"
 local path_string="%F{yellow}%1~%f"
 local prompt_string="»"
 local return_status="%(?:%{$fg[blue]%}$prompt_string:%{$fg[red]%}$prompt_string)"
