@@ -52,23 +52,20 @@ rand-string() {
 
 # Easily access other config files
 config() {
-	local DOTUNI="${DOTHOME}/dot_uni"
-	local DOTOSX="${DOTHOME}/dot_macos"
-	local DOTARCH="${DOTHOME}/dot_arch"
 	case $1 in
 		# Universal
-		zsh) vim ${DOTUNI}/zshrc && source ~/.zshrc ;;
-		zshenv) vim ${DOTUNI}/zshenv && source ~/.zshenv ;;
-		vim) vim ${DOTUNI}/vimrc ;;
+		zsh) vim ~/.zshrc && source ~/.zshrc ;;
+		zshenv) vim ~/.zshenv && source ~/.zshenv ;;
+		vim) vim ~/.vimrc ;;
 
 		# OSX
-		kwm) vim ${DOTOSX}/kwm/kwmrc ;;
-		khd) vim ${DOTOSX}/khdrc ;;
+		kwm) vim ~/.kwm/kwmrc ;;
+		khd) vim ~/.khdrc ;;
 
 		# Arch
-		xres) vim ${DOTARCH}/Xresources && xrdb ~/.Xresources ;;
-		i3) vim ${DOTARCH}/config/i3/config ;;
-		xinit) vim ${DOTARCH}/xinitrc
+		xres) vim ~/.Xresources && xrdb ~/.Xresources ;;
+		i3) vim ~/.config/i3/config ;;
+		xinit) vim ~/.xinitrc ;;
 	esac
 }
 
