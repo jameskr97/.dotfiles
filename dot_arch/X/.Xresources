@@ -3,13 +3,15 @@
 ! URxvt customization
 URxvt.scrollBar: false
 URxvt.font: xft:Hack:size=12:antialias=true
+urxvt*depth: 32
+urxvt*background: rgba:0000/0000/0200/c800
 
+! Colors
 ! Color Code
 !		black  red  green  yellow  blue  magenta  cyan  white
 ! dark	0      1    2      3       4     5        6     7
 ! light 8      9    10     11      12    13       14    15
 
-! Colors
 ! special
 *.foreground:   #c5c8c6
 *.background:   #1d1f21

@@ -165,6 +165,7 @@ install_system_desired(){
 	# WM
 	install_pacaur bspwm-git
 	install_pacaur sxhkd-git
+	install_pacaur compton-git
 	install_pacman rofi
 	install_pacman polybar-git
 
