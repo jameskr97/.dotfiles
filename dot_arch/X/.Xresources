@@ -10,40 +10,40 @@ URxvt.font: xft:Hack:size=12:antialias=true
 ! light 8      9    10     11      12    13       14    15
 
 ! Colors
-! Special
-*.foreground:   #ffffff
-*.background:   #000000
-*.cursorColor:  #ffffff
+! special
+*.foreground:   #c5c8c6
+*.background:   #1d1f21
+*.cursorColor:  #c5c8c6
 
-! Black
-*.color0:       #000000
-*.color8:       #4d4d4d
+! black
+*.color0:       #1d1f21
+*.color8:       #969896
 
-! Red
-*.color1:       #cc0403
-*.color9:      	#FF0000 
-!#3e0605
+! red
+*.color1:       #cc342b
+*.color9:       #cc342b
 
-! Green
-*.color2:       #19cb00
-*.color10:      #23fd00
+! green
+*.color2:       #198844
+*.color10:      #198844
 
-! Yellow
-*.color3:       #cecb00
-*.color11:      #fffd00
+! yellow
+*.color3:       #fba922
+*.color11:      #fba922
 
-! Blue
-*.color4:       #001cd1
-*.color12:      #0026ff
+! blue
+*.color4:       #3971ed
+*.color12:      #3971ed
 
-! Magenta
-*.color5:       #cb1ed1
-*.color13:      #fd28ff
+! magenta
+*.color5:       #a36ac7
+*.color13:      #a36ac7
 
-! Cyan
-*.color6:       #0dcdcd
-*.color14:      #14ffff
+! cyan
+*.color6:       #3971ed
+*.color14:      #3971ed
 
-! White
-*.color7:       #e5e5e5
+! white
+*.color7:       #c5c8c6
 *.color15:      #ffffff
+
