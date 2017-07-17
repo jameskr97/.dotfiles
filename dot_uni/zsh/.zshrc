@@ -67,8 +67,12 @@ config() {
 		xres) vim ~/.Xresources && xrdb ~/.Xresources ;;
 		i3) vim ~/.config/i3/config ;;
 		xinit) vim ~/.xinitrc ;;
+		bspwm) vim ~/.config/bspwm/bspwmrc ;;
+		sxhkd) vim ~/.config/sxhkd/sxhkdrc ;;
+		polybar) vim ~/.config/polybar/config && ~/.config/polybar/launch.sh
 	esac
 }
+
 
 # OS specific commands
 alias grep="grep --color=auto --exclude-dir={.bzr,CVS,.git,.hg,.svn}"
@@ -77,8 +81,8 @@ if [[ "$(uname)" == "Darwin" ]]; then # macOS/OSX/FreeBSD
 	alias ll="ls -lh"
 	alias la="ll -a"
 else # Ubuntu/Debian and Arch
-	alias ls="ls --color=auto -F"
-	alias ll="ls -ls"
+	alias ls="LC_COLLATE=C ls --color=auto -F"
+	alias ll="ls -l"
 	alias la="ll -a"
 fi
 
