@@ -1,12 +1,12 @@
 # .dotfiles
 
-My system configuration files. Made for macOS, ArchLinux and Ubuntu/Debian.
+My system configuration files. Made for macOS and  ArchLinux.
 
 # What does this do
 
 When running `install.sh`, the script will do the following...
 - All of them
-	1. Link files in dot_uni to the home folder
+	1. Link dot_uni to home folder with git stow
 
 - macOS
 	1. Create folder ~/Applications (For cask apps - check zshenv)
@@ -18,9 +18,7 @@ When running `install.sh`, the script will do the following...
 	1. Link Arch specific dotfiles
 	2. Install pacaur and dependencies
 	3. Install X11 Display server
-
-- Ubuntu/Debian
-	1. Nothing as of yet...
+	4. Install the various applications I want (it is supposed to setup my ideal system)
 
 `install.sh` requires root privileges to make installation seamless.
 
