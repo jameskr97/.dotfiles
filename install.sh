@@ -5,6 +5,10 @@
 # - To change your shell
 # - To install Homebrew (Mac)
 
+# Misc notes:
+# - Maybe I could automatically add "nohook resolv.conf" to /etc/dhcpcd.conf aswell
+
+
 # Setup Variables
 LINKDIR=$HOME # Not sure if this and the next line are the best way of doing this
 DOTDIR="$LINKDIR/.dotfiles" # but I'll go with it for now
@@ -118,6 +122,18 @@ install_aur_helper() {
 	success "Installed AUR Helper!"
 }
 
+install_dnscrypt(){
+	install_pacman dnscrypt-proxy
+	# Copy config file...
+	# Create system user...
+	getent passwd dnscrypt > /dev/null
+	if [ $? -ne 0 ]; then
+		useradd -r -d /var/dnscrypt -m -s /sbin/nologin dnscrypt
+	fi
+	# Point resolv.conf to localhost...
+	# Systemmd service enable...
+}
+
 install_system_desired(){
 	info "Installing drivers..."
 	install_pacman nvidia
@@ -138,12 +154,23 @@ install_system_desired(){
 	success "Installed fonts!"
 
 	info "Installing arch specific programs..."
+	# Command line
 	install_pacman zsh
 	install_pacman rxvt-unicode
 	install_pacman vim
+	install_pacman neofetch
+	install_pacman openssh
+	install_dnscrypt
+
+	# WM
 	install_pacaur bspwm-git
 	install_pacaur sxhkd-git
-	install_pacaur neofetch
+	install_pacman rofi
+	install_pacman polybar-git
+
+	# GUI Applications
+	install_pacman firefox
+
 	# Check users shell
 	if [[ "$SHELL" != $(which zsh) ]]; then
 		info "Changing shell to zsh..."

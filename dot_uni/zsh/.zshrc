@@ -88,6 +88,7 @@ fi
 
 if [[ -f /etc/arch-release ]]; then # Arch specific aliases
 	alias set_wallpaper="feh --bg-fill"
+	alias startx="ssh-agent startx"
 fi
 
 # All below here is from the prezto completion module.
