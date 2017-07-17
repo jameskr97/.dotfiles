@@ -9,11 +9,15 @@ font-1="Hack:size=9;2"
 font-2="Inconsolata:size=11;2"
 font-3="SF Pro Text:size=11:style=regular;3"
 
-[bar/top]
-; Placement
+[bar/universal]
 monitor=${env:MONITOR:DVI-D-0}
+override-redirect = true
+wm-restack = bspwm
+
+[bar/top]
+inherit=bar/universal
+; Placement
 bottom = false
-override-rediredt = true
 width = 100%
 height = 25
 ; Looks
