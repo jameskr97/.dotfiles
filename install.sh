@@ -72,7 +72,6 @@ install_mac_apps() {
 	done
 
 	success "Installed Brew Cask Applications!"
-	exit
 }
 
 # ArchLinux Specific
@@ -160,6 +159,7 @@ install_system_desired(){
 	install_pacman vim
 	install_pacman neofetch
 	install_pacman openssh
+	install_pacman stow
 	install_dnscrypt
 
 	# WM
@@ -179,16 +179,8 @@ install_system_desired(){
 	fi
 }
 
-# Linking dotfililes
-info "Linking universal dotfiles..."
-install_dotfiles_stow dot_uni
-
 # OS Spexific actions
 if [[ "$(uname)" == "Darwin" ]]; then # If we're using OSX/macOS
-	# Add Darwin specific dotifles
-	info "Linking Darwin dotfiles..."
-	install_dotfiles_stow dot_macos
-	exit # Temporary
 	# Create Applications folder in home
 	mkdir -p ~/Applications
 
@@ -199,14 +191,18 @@ if [[ "$(uname)" == "Darwin" ]]; then # If we're using OSX/macOS
 
 	install_homebrew
 	install_mac_apps
+	info "Linking dotfiles..."
+	install_dotfiles_stow dot_uni
+	install_dotfiles_stow dot_macos
 
 elif [[ -f /etc/arch-release ]]; then # If we're using ArchLinux
 	info "Updating arch system..."
 	sudo pacman -Syu --noconfirm &>/dev/null
 
-	info "Linking Arch dotfiles..."
-	install_dotfiles_stow dot_arch
-		
 	install_aur_helper
 	install_system_desired
+
+	info "Linking dotfiles..."
+	install_dotfiles_stow dot_uni
+	install_dotfiles_stow dot_arch
 fi
