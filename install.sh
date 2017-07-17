@@ -76,7 +76,7 @@ install_mac_apps() {
 
 # ArchLinux Specific
 install_pacman() {
-	if [[ -z $(pacman -Qs $1) ]]; then
+	if [[ -z $(pacman -Qi $1) ]]; then
 		info "Installing $1..."
 		sudo pacman --noconfirm --needed -S $1 &>/dev/null
 	else
@@ -85,7 +85,7 @@ install_pacman() {
 }
 
 install_pacaur(){
-	if [[ -z $(pacman -Qs $1) ]]; then
+	if [[ -z $(pacman -Qi $1) ]]; then
 		info "Installing $1 via pacaur..."
 		pacaur --noconfirm --needed --noedit -S $1 &>/dev/null
 	else
@@ -94,13 +94,13 @@ install_pacaur(){
 }
 
 install_aur_git () {
-	if [[ -z $(pacman -Qs $1) ]]; then
-		pushd; local work_dir=$(mktemp -d); cd $work_dir
+	if [[ -z $(pacman -Qi $1) ]]; then
+		local work_dir=$(mktemp -d); cd $work_dir
 		info "Installing $1..."
 		git clone --quiet https://aur.archlinux.org/$1.git
 		cd $1
 		makepkg --skippgpcheck --install --needed --noconfirm &>/dev/null
-		popd; rm -rf $work_dir
+		rm -rf $work_dir
 	else
 		alert "$1 already installed. Skipping..."
 	fi
@@ -122,7 +122,7 @@ install_dnscrypt(){
 	# Create system user...
 	getent passwd dnscrypt > /dev/null
 	if [ $? -ne 0 ]; then
-		useradd -r -d /var/dnscrypt -m -s /sbin/nologin dnscrypt
+		sudo useradd -r -d /var/dnscrypt -m -s /sbin/nologin dnscrypt
 	fi
 	# Point resolv.conf to localhost...
 	# Systemmd service enable...
@@ -152,7 +152,7 @@ install_system_desired(){
 	install_pacman zsh
 	install_pacman rxvt-unicode
 	install_pacman vim
-	install_pacman neofetch
+	install_pacaur neofetch-git
 	install_pacman openssh
 	install_pacman stow
 	install_dnscrypt
@@ -162,7 +162,7 @@ install_system_desired(){
 	install_pacaur sxhkd-git
 	install_pacaur compton-git
 	install_pacman rofi
-	install_pacman polybar-git
+	install_pacaur polybar-git
 
 	# GUI Applications
 	install_pacman firefox
