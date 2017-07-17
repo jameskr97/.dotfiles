@@ -1,0 +1,32 @@
+# James' Polybar config
+[color]
+background=#1d1f21
+foreground=#c5c8c6
+transparent=$00FFFFFF
+
+[font]
+font-1="Hack:size=9;2"
+font-2="Inconsolata:size=11;2"
+font-3="SF Pro Text:size=11:style=regular;3"
+
+[bar/top]
+; Placement
+monitor=${env:MONITOR:DVI-D-0}
+bottom = false
+override-rediredt = true
+width = 100%
+height = 25
+; Looks
+font-0 = ${font.font-2}
+background = ${color.background}
+foreground = ${color.foreground}
+; Modules
+modules-center=date
+
+[module/date]
+type=internal/date
+interval=1.0
+date=%Y-%m-%d
+time=%l:%M
+label=%time%
+; vim:ft=dosini
