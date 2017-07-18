@@ -11,6 +11,7 @@ font-3="SF Pro Text:size=11:style=regular;3"
 
 [bar/universal]
 monitor=${env:MONITOR:DVI-D-0}
+monitor-fallback=${env:MONITOR:Virtual-1}
 override-redirect = true
 wm-restack = bspwm
 
