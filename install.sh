@@ -24,12 +24,11 @@ fail () { printf "\r\033[2K  [\033[0;31mFAIL\033[0m] $1\n"; exit; } # [FAIL] $1
 # First argument is the folder with things inside to link to home directory
 install_dotfiles_stow() {
 	if [ ! $1 ]; then fail "install_dotfiles_stow: invalid params"; fi
-	initial_dir=$(pwd); cd $DOTDIR/$1
+	cd $DOTDIR/$1
 	for file_to_link in $(find . -maxdepth 1 -mindepth 1); do
 		base_file=$(basename $file_to_link)
 		stow -t $HOME $base_file
 	done
-	cd $initial_dir # Return to previous directory
 }
 
 # OSX Setup Functions
