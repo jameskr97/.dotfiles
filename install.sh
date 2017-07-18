@@ -76,7 +76,8 @@ install_mac_apps() {
 
 # ArchLinux Specific
 install_pacman() {
-	if [[ -z $(pacman -Qi $1 &>/dev/null) ]]; then
+	pacman -Qi $1 &>/dev/null
+	if [[ $? -ne 0 ]]; then
 		info "Installing $1..."
 		sudo pacman --noconfirm --needed -S $1 &>/dev/null
 	else
@@ -85,7 +86,8 @@ install_pacman() {
 }
 
 install_pacaur(){
-	if [[ -z $(pacman -Qi $1 &>/dev/null) ]]; then
+	pacman -Qi $1 &>/dev/null
+	if [[ $? -ne 0 ]]; then
 		info "Installing $1 via pacaur..."
 		pacaur --noconfirm --needed --noedit -S $1 &>/dev/null
 	else
@@ -94,7 +96,8 @@ install_pacaur(){
 }
 
 install_aur_git () {
-	if [[ -z $(pacman -Qi $1 &>/dev/null) ]]; then
+	pacman -Qi $1 &>/dev/null
+	if [[ $? -ne 0 ]]; then
 		local work_dir=$(mktemp -d); cd $work_dir
 		info "Installing $1..."
 		git clone --quiet https://aur.archlinux.org/$1.git
