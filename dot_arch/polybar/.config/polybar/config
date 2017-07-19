@@ -1,4 +1,5 @@
 # James' Polybar config
+# Config info: https://github.com/jaagr/polybar/wiki
 [color]
 background=#1d1f21
 foreground=#c5c8c6
@@ -25,13 +26,23 @@ height = 25
 font-0 = ${font.font-2}
 background = ${color.background}
 foreground = ${color.foreground}
+padding = 1
 ; Modules
 modules-center=date
+modules-right=wired-network
 
+;================================
+;====== Module Definitions ======
+;================================
 [module/date]
 type=internal/date
 interval=1.0
 date=%Y-%m-%d
 time=%l:%M
 label=%time%
+
+[module/wired-network]
+type = internal/network
+interface = enp0s31f6
+
 ; vim:ft=dosini

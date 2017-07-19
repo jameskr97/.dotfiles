@@ -160,6 +160,7 @@ install_system_desired(){
 	install_dnscrypt
 
 	# WM
+	install_pacman wireless_tools # Polybar network dependency
 	install_pacaur bspwm-git
 	install_pacaur sxhkd-git
 	install_pacaur compton-git
