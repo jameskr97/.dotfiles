@@ -160,6 +160,7 @@ install_system_desired(){
 	install_dnscrypt
 
 	# WM
+	install_pacaur i3lock-color-git
 	install_pacman wireless_tools # Polybar network dependency
 	install_pacaur bspwm-git
 	install_pacaur sxhkd-git
