@@ -2,7 +2,7 @@
 # James Roberts
 
 # Prompt
-local hn="λ"
+[[ -f /etc/arch-release ]] && local hn="λ" || local hn="Σ"
 local host_name="%F{cyan}$hn%f"
 local path_string="%F{yellow}%1~%f"
 local prompt_string="»"
