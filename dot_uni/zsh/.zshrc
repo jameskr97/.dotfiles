@@ -58,6 +58,7 @@ config() {
 		zsh) vim ~/.zshrc && source ~/.zshrc ;;
 		zshenv) vim ~/.zshenv && source ~/.zshenv ;;
 		vim) vim ~/.vimrc ;;
+		ssh) vim ~/.ssh/config ;;
 
 		# OSX
 		kwm) vim ~/.kwm/kwmrc ;;
