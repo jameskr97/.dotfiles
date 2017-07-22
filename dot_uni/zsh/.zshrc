@@ -59,6 +59,7 @@ config() {
 		zshenv) vim ~/.zshenv && source ~/.zshenv ;;
 		vim) vim ~/.vimrc ;;
 		ssh) vim ~/.ssh/config ;;
+		hosts) sudo vim /etc/hosts ;;
 
 		# OSX
 		kwm) vim ~/.kwm/kwmrc ;;
