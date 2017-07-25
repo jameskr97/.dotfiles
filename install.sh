@@ -54,7 +54,7 @@ install_homebrew() {
 
 install_osx_term() {
 	info "Installing command line apps..."
-	local APPS=("stow" "dtrx" "wget" "tree" "python3" "tmate" "irssi" "nmap")
+	local APPS=("stow" "wakeonlan" "dtrx" "wget" "tree" "python3" "tmate" "irssi" "nmap")
 	for app in ${APPS[@]}; do
 		info "Installing $app..."; brew install "$app" &>/dev/null
 	done
