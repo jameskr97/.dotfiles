@@ -90,9 +90,18 @@ else # Ubuntu/Debian and Arch
 fi
 
 if [[ -f /etc/arch-release ]]; then # Arch specific aliases
-	alias set_wallpaper="feh --bg-fill"
+	# Essentials
 	alias startx="ssh-agent startx"
 	alias lock="$DOTHOME/scripts/lock.sh"
+
+	# Misc
+	alias set_wallpaper="feh --bg-fill"
+	alias pacman="sudo pacman"
+
+	# Power
+	alias poweroff="sudo systemctl poweroff"
+	alias restart="sudo systemctl restart"
+	alias sleep="sudo systemctl suspend"
 fi
 
 # All below here is from the prezto completion module.
