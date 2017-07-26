@@ -97,12 +97,14 @@ install_pacaur(){
 install_aur_git () {
 	pacman -Qi $1 &>/dev/null
 	if [[ $? -ne 0 ]]; then
+		local current_dir=$(pwd)
 		local work_dir=$(mktemp -d); cd $work_dir
 		info "Installing $1..."
 		git clone --quiet https://aur.archlinux.org/$1.git
 		cd $1
 		makepkg --skippgpcheck --install --needed --noconfirm &>/dev/null
 		rm -rf $work_dir
+		cd $current_dir
 	else
 		alert "$1 already installed. Skipping..."
 	fi
@@ -119,15 +121,34 @@ install_aur_helper() {
 }
 
 install_dnscrypt(){
+	# Install
 	install_pacman dnscrypt-proxy
-	# Copy config file...
-	# Create system user...
-	getent passwd dnscrypt > /dev/null
-	if [ $? -ne 0 ]; then
-		sudo useradd -r -d /var/dnscrypt -m -s /sbin/nologin dnscrypt
+
+	# Only config dnscrypt if the dnscrypt-proxy.conf.backup does not exist...
+	if [[ ! -f /etc/dnscrypt-proxy.conf.backup ]]; then
+		info "Configuring dnscrypt..."
+		sudo cp /etc/dnscrypt-proxy.conf /etc/dnscrypt-proxy.conf.backup
+		sudo sed -i -e 's|ResolverName random|ResolverName cisco|' -e 's|# User _dnscrypt-proxy|User dnscrypt|' /etc/dnscrypt-proxy.conf
+
+		# Create system user...
+		getent passwd dnscrypt > /dev/null
+		if [ $? -ne 0 ]; then
+			sudo useradd -r -d /var/dnscrypt -m -s /sbin/nologin dnscrypt
+		fi
+
+		# Point resolv.conf to localhost...
+		if [[ ! -f /etc/resolv.conf/original ]]; then
+			sudo cp /etc/resolv.conf /etc/resolv.conf.original
+			sudo sh -c "echo -e \"# Edited for dnscrypt\nnameserver 127.0.0.1\" > /etc/resolv.conf"
+		fi
+
+		# Systemmd service enable...
+		sudo systemctl start dnscrypt-proxy.service &>/dev/null
+		sudo systemctl enable dnscrypt-proxy.service &>/dev/null
+		success "dnscrypt insatlled and configured!"
+	else
+		alert "dnscrypt possible already configured. Will not configure again."
 	fi
-	# Point resolv.conf to localhost...
-	# Systemmd service enable...
 }
 
 install_system_desired(){
