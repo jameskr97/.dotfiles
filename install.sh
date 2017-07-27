@@ -181,6 +181,12 @@ install_system_desired(){
 	install_pacman stow
 	install_dnscrypt
 
+	# Code
+	install_pacman python
+	install_pacman python-pip
+	install_pacman python-virtualenv
+	install_pacman python-virtualenvwrapper
+
 	# WM
 	install_pacaur i3lock-color-git
 	install_pacman wireless_tools # Polybar network dependency
