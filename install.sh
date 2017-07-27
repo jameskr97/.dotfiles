@@ -159,6 +159,7 @@ install_system_desired(){
 	install_pacman xorg-server
 	install_pacman xorg-xinit
 	install_pacman xorg-xrandr
+	install_pacman xorg-xsetroot
 	install_pacman feh # Not apart of the server... but best category
 	success "Installed X11 Display Server!"
 
