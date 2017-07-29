@@ -100,7 +100,7 @@ if [[ -f /etc/arch-release ]]; then # Arch specific aliases
 
 	# Power
 	alias poweroff="sudo systemctl poweroff"
-	alias restart="sudo systemctl restart"
+	alias restart="sudo systemctl reboot"
 	alias sleep="sudo systemctl suspend"
 fi
 
