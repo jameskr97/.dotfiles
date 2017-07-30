@@ -114,7 +114,6 @@ install_aur_helper() {
 	info "Installing pacaur dependencies..."
 	install_pacman expac
 	install_pacman yajl
-	install_pacman git
 	install_aur_git cower
 	install_aur_git pacaur
 	success "Installed AUR Helper!"
@@ -154,6 +153,8 @@ install_dnscrypt(){
 install_system_desired(){
 	info "Installing drivers..."
 	install_pacman nvidia
+	install_pacman pulseaudio
+	install_pacaur alsa-utils
 
 	info "Installing X11 Display server..."
 	install_pacman xorg-server
