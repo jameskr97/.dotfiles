@@ -6,19 +6,19 @@ My system configuration files. Made for macOS and  ArchLinux.
 
 When running `install.sh`, the script will do the following...
 - All of them
-	1. Link dot_uni to home folder with git stow
+	* Link dot_uni to home folder with git stow
 
 - macOS
-	1. Create folder ~/Applications (For cask apps - check zshenv)
-	2. Run xcode-select to get command line tools
-	3. Install Homebrew and homebrew cask.
-	4. Install cask apps
+	* Create folder ~/Applications (For cask apps - check zshenv)
+	* Run xcode-select to get command line tools
+	* Install Homebrew and homebrew cask apps
+	* Install macOS specific dotfiles
 
 - Arch
-	1. Link Arch specific dotfiles
-	2. Install pacaur and dependencies
-	3. Install X11 Display server
-	4. Install the various applications I want (it is supposed to setup my ideal system)
+	* Install pacaur and dependencies
+	* Install X11 Display server
+	* Install the various applications I want
+	* Link Arch specific dotfiles
 
 `install.sh` requires root privileges to make installation seamless.
 
