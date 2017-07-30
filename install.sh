@@ -136,7 +136,7 @@ install_dnscrypt(){
 		fi
 
 		# Point resolv.conf to localhost...
-		if [[ ! -f /etc/resolv.conf/original ]]; then
+		if [[ ! -f /etc/resolv.conf.original ]]; then
 			sudo cp /etc/resolv.conf /etc/resolv.conf.original
 			sudo sh -c "echo -e \"# Edited for dnscrypt\nnameserver 127.0.0.1\" > /etc/resolv.conf"
 		fi
