@@ -5,12 +5,12 @@
 export DOTHOME="${HOME}/.dotfiles"
 export EDITOR="/usr/bin/vim"
 
-# Python
-export WORKON_HOME=~/.virtualenvs
-source /usr/bin/virtualenvwrapper.sh
-
 if [[ "$(uname)"  == "Darwin" ]]; then		# If our OS is OSX...
 	export HOMEBREW_CASK_OPTS="--appdir=~/Applications --fontdir=/Library/Fonts" 	# Set hombrew options...
 elif [[ -f /etc/arch-release ]]; then
 	export XDG_CONFIG_HOME="$HOME/.config"
+
+	# Python
+	export WORKON_HOME=~/.virtualenvs
+	source /usr/bin/virtualenvwrapper.sh
 fi
