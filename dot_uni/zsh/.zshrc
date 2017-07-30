@@ -82,7 +82,7 @@ if [[ "$(uname)" == "Darwin" ]]; then # macOS/OSX/FreeBSD
 	alias ls="ls -FG"
 	alias ll="ls -lh"
 	alias la="ll -a"
-	alias wake_shenzhen="wakeonlan 70:8b:cd:58:61:1b"
+	alias wake_lambda="wakeonlan 70:8b:cd:58:61:1b"
 else # Ubuntu/Debian and Arch
 	alias ls="LC_COLLATE=C ls --color=auto -F"
 	alias ll="ls -l"
