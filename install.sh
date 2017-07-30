@@ -181,6 +181,9 @@ install_system_desired(){
 	install_pacman openssh
 	install_pacman stow
 	install_dnscrypt
+	install_pacman mpd
+	install_pacman mpc
+	install_pacman ncmpcpp
 
 	# Code
 	install_pacman python

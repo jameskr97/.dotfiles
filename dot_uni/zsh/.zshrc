@@ -71,7 +71,8 @@ config() {
 		xinit) vim ~/.xinitrc ;;
 		bspwm) vim ~/.config/bspwm/bspwmrc ;;
 		sxhkd) vim ~/.config/sxhkd/sxhkdrc ;;
-		polybar) vim ~/.config/polybar/config && ~/.config/polybar/launch.sh
+		polybar) vim ~/.config/polybar/config && ~/.config/polybar/launch.sh ;;
+		mpd) vim ~/.config/mpd/mpd.conf && systemctl --user restart mpd ;;
 	esac
 }
 
