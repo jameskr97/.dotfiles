@@ -98,6 +98,7 @@ if [[ -f /etc/arch-release ]]; then # Arch specific aliases
 	# Misc
 	alias set_wallpaper="feh --bg-fill"
 	alias pacman="sudo pacman"
+	alias music="ncmpcpp"
 
 	# Power
 	alias poweroff="sudo systemctl poweroff"
