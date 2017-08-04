@@ -1,0 +1,94 @@
+# james i3 config
+# http://i3wm.org/docs/userguide.html
+
+# Key definitions
+set $alt Mod1
+set $ctrl Control
+set $super Mod4
+set $mod Mod1
+
+# Essential Definitons
+set $term urxvt
+floating_modifier $super
+
+# Fonts
+font pango:Inconsolata 12
+
+# Gaps Essential
+for_window [class="^.*"] border pixel 0
+gaps inner 15
+gaps outer 15
+
+# Basic keybinds
+bindsym $mod+Return 	exec $term
+bindsym $mod+Shift+q	kill
+bindsym $ctrl+space	exec rofi -show run
+bindsym $ctrl+$alt+l exec lock
+
+# Focus
+bindsym $mod+h	focus left
+bindsym $mod+j	focus down
+bindsym $mod+k	focus up
+bindsym $mod+l	focus right
+
+# Change
+bindsym $mod+Shift+h	move left
+bindsym $mod+Shift+j	move down
+bindsym $mod+Shift+k	move up
+bindsym $mod+Shift+l	move right
+
+# Bar
+bar { mode invisible }
+
+# Space
+set $s1 "1"
+set $s2 "2"
+set $s3 "3"
+set $s4 "4"
+set $s5 "5"
+set $s6 "6"
+set $s7 "7"
+set $s8 "8"
+set $s9 "9"
+set $s10 "10"
+
+# Space - Switch
+bindsym $mod+1		workspace $s1
+bindsym $mod+2		workspace $s2
+bindsym $mod+3		workspace $s3
+bindsym $mod+4		workspace $s4
+bindsym $mod+5		workspace $s5
+bindsym $mod+6		workspace $s6
+bindsym $mod+7		workspace $s7
+bindsym $mod+8		workspace $s8
+bindsym $mod+9		workspace $s9
+bindsym $mod+0 		workspace $s10
+
+# Space - Transfer
+bindsym $mod+Shift+1	move container to workspace $s1
+bindsym $mod+Shift+2	move container to workspace $s2
+bindsym $mod+Shift+3	move container to workspace $s3
+bindsym $mod+Shift+4	move container to workspace $s4
+bindsym $mod+Shift+5	move container to workspace $s5
+bindsym $mod+Shift+6	move container to workspace $s6
+bindsym $mod+Shift+7	move container to workspace $s7
+bindsym $mod+Shift+8	move container to workspace $s8
+bindsym $mod+Shift+9	move container to workspace $s9
+bindsym $mod+Shift+0	move container to workspace $s10
+
+# Space - Location
+workspace $s1 output HDMI-0
+workspace $s2 output HDMI-0
+workspace $s3 output HDMI-0
+workspace $s4 output DVI-D-0
+workspace $s5 output DVI-D-0
+workspace $s6 output DVI-D-0
+workspace $s7 output DVI-D-1
+workspace $s8 output DVI-D-1
+workspace $s9 output DVI-D-1
+workspace $s10 output DVI-D-1
+
+# Update
+bindsym $mod+Shift+c reload
+bindsym $mod+Shift+r restart
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Exit i3?' -b 'Yes' 'i3-msg exit'"

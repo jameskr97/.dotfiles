@@ -73,6 +73,7 @@ config() {
 		sxhkd) vim ~/.config/sxhkd/sxhkdrc ;;
 		polybar) vim ~/.config/polybar/config && ~/.config/polybar/launch.sh ;;
 		mpd) vim ~/.config/mpd/mpd.conf && systemctl --user restart mpd ;;
+		i3) vim ~/.config/i3/config && i3-msg reload ;;
 	esac
 }
 

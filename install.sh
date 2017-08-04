@@ -195,6 +195,7 @@ install_system_desired(){
 	install_pacaur i3lock-color-git
 	install_pacman wireless_tools # Polybar network dependency
 	install_pacaur bspwm-git
+	install_pacaur i3-gaps
 	install_pacaur sxhkd-git
 	install_pacaur compton-git
 	install_pacman rofi

@@ -12,4 +12,7 @@ compton & # Run compton
 
 
 # Run bspwm
-exec bspwm
+#exec bspwm
+
+# Run i3
+exec i3
