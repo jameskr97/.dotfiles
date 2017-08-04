@@ -168,8 +168,6 @@ install_system_desired(){
 	info "Installing fonts..."
 	install_pacman ttf-hack
 	install_pacman ttf-inconsolata
-	install_pacman adobe-source-code-pro-fonts
-	install_pacaur otf-san-francisco
 	success "Installed fonts!"
 
 	info "Installing arch specific programs..."
@@ -194,9 +192,7 @@ install_system_desired(){
 	# WM
 	install_pacaur i3lock-color-git
 	install_pacman wireless_tools # Polybar network dependency
-	install_pacaur bspwm-git
 	install_pacaur i3-gaps
-	install_pacaur sxhkd-git
 	install_pacaur compton-git
 	install_pacman rofi
 	install_pacaur polybar-git
@@ -207,7 +203,7 @@ install_system_desired(){
 	# Check users shell
 	if [[ "$SHELL" != $(which zsh) ]]; then
 		info "Changing shell to zsh..."
-		chsh -s $(which zsh)
+		sudo chsh -s $(which zsh) james
 	fi
 }
 
