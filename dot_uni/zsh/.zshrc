@@ -96,9 +96,12 @@ if [[ -f /etc/arch-release ]]; then # Arch specific aliases
 	alias startx="ssh-agent startx"
 	alias lock="$DOTHOME/scripts/lock.sh"
 
+	# Administration
+	alias pacman="sudo pacman"
+	alias visudo="sudo visudo"
+
 	# Misc
 	alias set_wallpaper="feh --bg-fill"
-	alias pacman="sudo pacman"
 	alias music="ncmpcpp"
 
 	# Power

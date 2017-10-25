@@ -8,7 +8,6 @@ transparent=$00FFFFFF
 [font]
 font-1="Hack:size=9;2"
 font-2="Inconsolata:size=11;2"
-font-3="SF Pro Text:size=11:style=regular;3"
 
 [bar/universal]
 monitor=${env:MONITOR:DVI-D-0}
