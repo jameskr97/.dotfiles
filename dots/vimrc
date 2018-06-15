@@ -12,6 +12,7 @@ set showmode                    " Show current mode down the bottom
 set gcr=a:blinkon0              " Disable cursor blink
 set autoread                    " Reload files changed outside vim
 set hidden                      " Turn on hidden buffers
+set viminfo=                    " Stop viminfo from being generated
 syntax on                       " Turn on syntax highlighting
 
 " Turn Off Swap Files

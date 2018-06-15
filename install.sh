@@ -96,7 +96,4 @@ install_dotfiles () {
     done
 }
 
-
-if [[ "$(uname)" == "Darwin" ]]; then
-	install_dotfiles
-fi
+install_dotfiles
