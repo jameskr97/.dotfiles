@@ -224,11 +224,12 @@ if [[ "$(uname)" == "Darwin" ]]; then # If we're using OSX/macOS
 	install_dotfiles_stow dot_macos
 
 elif [[ -f /etc/arch-release ]]; then # If we're using ArchLinux
-	info "Updating arch system..."
-	sudo pacman -Syu --noconfirm &>/dev/null
+#	TODO: Update for Manjaro instead of arch
+#	info "Updating arch system..."
+#	sudo pacman -Syu --noconfirm &>/dev/null
 
-	install_aur_helper
-	install_system_desired
+#	install_aur_helper
+#	install_system_desired
 
 	info "Linking dotfiles..."
 	install_dotfiles_stow dot_uni
