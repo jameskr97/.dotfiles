@@ -1,0 +1,3 @@
+# SSH - Ignore everything except config
+dots/ssh/**
+!dots/ssh/config 
