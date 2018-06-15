@@ -27,7 +27,6 @@ alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
 alias .....="cd ../../../.."
-alias rmi="rm -i"
 
 #  Git aliases
 alias gs="git status"
@@ -43,6 +42,13 @@ alias gd="git diff"
 alias gb="git branch"
 
 # Misc Aliases
+alias rmi="rm -i"
+mkcd() {
+	if [ $1 ]; then
+		mkdir $1 && cd $1
+	fi
+}
+
 rand-string() {
 	if [ $1 ]; then
 		cat /dev/urandom | env LC_CTYPE=C tr -cd 'a-f0-9' | head -c $1
