@@ -210,18 +210,18 @@ install_system_desired(){
 # OS Spexific actions
 if [[ "$(uname)" == "Darwin" ]]; then # If we're using OSX/macOS
 	# Create Applications folder in home
-	mkdir -p ~/Applications
+	#mkdir -p ~/Applications
 
 	# TODO: Check if XcodeCLT  is already installed
 	# Install Xcode Command line tools
-	info "Installing command line tools..."
-	xcode-select --install &> /dev/null
+	#info "Installing command line tools..."
+	#xcode-select --install &> /dev/null
 
-	install_homebrew
-	install_mac_apps
-	info "Linking dotfiles..."
+	#install_homebrew
+	#install_mac_apps
+	#info "Linking dotfiles..."
 	install_dotfiles_stow dot_uni
-	install_dotfiles_stow dot_macos
+	#install_dotfiles_stow dot_macos
 
 elif [[ -f /etc/arch-release ]]; then # If we're using ArchLinux
 #	TODO: Update for Manjaro instead of arch

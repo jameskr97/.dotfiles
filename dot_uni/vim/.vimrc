@@ -3,7 +3,6 @@
 " June 11, 2017
 
 " General
-colorscheme candycode	" The most important comes first
 syntax enable " Syntax highlighing
 set history=500 " Lines of command history to save
 set number  " Enable line numbers

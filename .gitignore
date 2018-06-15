@@ -1,8 +1,0 @@
-# james git ignore
-
-# macOS
-.DS_Store
-
-# ignore mpd data files
-dot_arch/mpd/.config/mpd/*
-!dot_arch/mpd/.config/mpd/mpd.conf
