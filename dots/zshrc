@@ -31,7 +31,6 @@ alias .....="cd ../../../.."
 #  Git aliases
 alias gs="git status"
 alias ga="git add"
-alias gap="git add --patch"
 alias gcm="git commit -m"
 alias gp="git push"
 alias gpl="git pull"
@@ -41,21 +40,6 @@ alias gf="git fetch"
 alias gd="git diff"
 alias gb="git branch"
 
-# Misc Aliases
-alias rmi="rm -i"
-mkcd() {
-	if [ $1 ]; then
-		mkdir $1 && cd $1
-	fi
-}
-
-rand-string() {
-	if [ $1 ]; then
-		cat /dev/urandom | env LC_CTYPE=C tr -cd 'a-f0-9' | head -c $1
-	else
-		cat /dev/urandom | env LC_CTYPE=C tr -cd 'a-f0-9' | head -c 32
-	fi
-}
 
 # Easily access other config files
 config() {
@@ -66,20 +50,6 @@ config() {
 		vim) vim ~/.vimrc ;;
 		ssh) vim ~/.ssh/config ;;
 		hosts) sudo vim /etc/hosts ;;
-
-		# OSX
-		kwm) vim ~/.kwm/kwmrc ;;
-		khd) vim ~/.khdrc ;;
-
-		# Arch
-		xres) vim ~/.Xresources && xrdb ~/.Xresources ;;
-		i3) vim ~/.config/i3/config ;;
-		xinit) vim ~/.xinitrc ;;
-		bspwm) vim ~/.config/bspwm/bspwmrc ;;
-		sxhkd) vim ~/.config/sxhkd/sxhkdrc ;;
-		polybar) vim ~/.config/polybar/config && ~/.config/polybar/launch.sh ;;
-		mpd) vim ~/.config/mpd/mpd.conf && systemctl --user restart mpd ;;
-		i3) vim ~/.config/i3/config && i3-msg reload ;;
 	esac
 }
 

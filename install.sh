@@ -38,8 +38,8 @@ link_file () {
                 skip=true;
             else
             	# Tell user file already exists, and ask what to do with it.
-                log-user "File already exists: $dst ($(basename "$src")), what do you want to do?\n\
-        		[s]kip, [S]kip all, [o]verwrite, [O]verwrite all, [b]ackup, [B]ackup all?"
+                log-question "File already exists: $dst ($(basename "$src")), what do you want to do?\n\
+    	[s]kip, [S]kip all, [o]verwrite, [O]verwrite all, [b]ackup, [B]ackup all?"
 
                 read -n 1 action
 
@@ -60,7 +60,6 @@ link_file () {
         overwrite=${overwrite:-$overwrite_all}
         backup=${backup:-$backup_all}
         skip=${skip:-$skip_all}
-        echo $overwrite, $backup, $skip
 
         if [ "$overwrite" == "true" ]; then
             rm -rf "$dst"
