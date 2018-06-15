@@ -4,6 +4,7 @@
 set nocompatible
 
 " General Config
+filetype plugin indent on       " Load plugins according to detected filetype.
 set number                      " Line numbers are good
 set backspace=indent,eol,start  " Allow backspace in insert mode
 set history=1000                " Store lots of :cmdline history
@@ -15,6 +16,13 @@ set hidden                      " Turn on hidden buffers
 set viminfo=                    " Stop viminfo from being generated
 syntax on                       " Turn on syntax highlighting
 
+set ttyfast                " Faster redrawing.
+set lazyredraw             " Only redraw when necessary.
+set splitbelow             " Open new windows below the current window.
+set splitright             " Open new windows right of the current window.
+set cursorline             " Find the current line quickly.
+set wrapscan               " Searches wrap around end-of-file.
+
 " Turn Off Swap Files
 set noswapfile
 set nobackup
@@ -24,9 +32,9 @@ set writebackup     " Create backup of original file to delete after successful 
 set autoindent      " Copies indentation from previous line
 set smartindent     " Automatically inserts one extra level of indentation
 set smarttab        " Inserts indentation according to 'shiftwidth'
-set shiftwidth=2    " Number of spaces for each indentation
-set softtabstop=2   " Number of spaces a tab has when editing
-set tabstop=2       " Number of spaces a tab in a files counts for
+set shiftwidth=4    " Number of spaces for each indentation
+set softtabstop=4   " Number of spaces a tab has when editing
+set tabstop=4       " Number of spaces a tab in a files counts for
 set expandtab       " Tabs become spaces
 set nowrap          " Don't wrap lines
 set linebreak       " Wrap lines at convenient points
@@ -45,3 +53,11 @@ set incsearch       " Find the next match as we type the search
 set hlsearch        " Highlight searches by default
 set ignorecase      " Ignore case when searching...
 set smartcase       " ...unless we type a capital
+
+" Plugins
+" Enable Pathogen package manager
+execute pathogen#infect()   
+autocmd vimenter * NERDTree     " Enable NERDTree on startup
+map <C-n> :NERDTreeToggle<CR>   " Toggle Nerdtree with Ctrl+n
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif " Close vim if only one window is left
+

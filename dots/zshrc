@@ -47,10 +47,11 @@ config() {
 		# Universal
 		zsh) vim ~/.zshrc && source ~/.zshrc ;;
 		zshenv) vim ~/.zshenv && source ~/.zshenv ;;
-		vim) vim ~/.vimrc ;;
+    vim) vim ~/.vim/vimrc ;;
 		ssh) vim ~/.ssh/config ;;
 		hosts) sudo vim /etc/hosts ;;
-	esac
+	  tmux) vim ~/.tmux.conf ;;
+  esac
 }
 
 
