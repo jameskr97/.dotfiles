@@ -35,7 +35,7 @@ set smarttab        " Inserts indentation according to 'shiftwidth'
 set shiftwidth=4    " Number of spaces for each indentation
 set softtabstop=4   " Number of spaces a tab has when editing
 set tabstop=4       " Number of spaces a tab in a files counts for
-set expandtab       " Tabs become spaces
+"set expandtab       " Tabs become spaces
 set nowrap          " Don't wrap lines
 set linebreak       " Wrap lines at convenient points
 
@@ -57,7 +57,6 @@ set smartcase       " ...unless we type a capital
 " Plugins
 " Enable Pathogen package manager
 execute pathogen#infect()   
-autocmd vimenter * NERDTree     " Enable NERDTree on startup
 map <C-n> :NERDTreeToggle<CR>   " Toggle Nerdtree with Ctrl+n
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif " Close vim if only one window is left
 

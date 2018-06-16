@@ -9,7 +9,11 @@ Host code.jameskr.xyz
 	User git
 	Hostname code.jameskr.xyz
 	Port 2284
-	IdentityFile ~/.ssh/shenzhen
+	IdentityFile ~/.ssh/git
+
+Host github.com
+	Hostname github.com
+	IdentityFile ~/.ssh/git
 
 Host shane
 	User ec2-user
