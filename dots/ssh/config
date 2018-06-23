@@ -19,4 +19,4 @@ Host shane
 	User ec2-user
 	Hostname 52.71.16.33
 	PubKeyAuthentication yes
-	IdentityFile ~/.ssh/shafournee_ec2
+	IdentityFile ~/.ssh/aws-minecraft.pem
