@@ -3,7 +3,7 @@
 
 # Prompt
 local user_name="%F{red}$(whoami)%f"
-local host_name="%F{cyan}%m%f"
+local host_name="%F{magenta}%m%f"
 local path_string="%F{yellow}%1~%f"
 local prompt_string="»"
 local return_status="%(?:%{$fg[blue]%}$prompt_string:%{$fg[red]%}$prompt_string)"
@@ -169,3 +169,4 @@ zstyle ':completion:*:manuals.(^1*)' insert-sections true
 
 autoload -U compinit
 compinit
+
