@@ -5,18 +5,6 @@ Host shenzhen
 	PubKeyAuthentication yes
 	IdentityFile ~/.ssh/shenzhen
 
-Host code.jameskr.xyz
-	User git
-	Hostname code.jameskr.xyz
-	Port 2284
-	IdentityFile ~/.ssh/git
-
 Host github.com
 	Hostname github.com
 	IdentityFile ~/.ssh/git
-
-Host shane
-	User ec2-user
-	Hostname 52.71.16.33
-	PubKeyAuthentication yes
-	IdentityFile ~/.ssh/aws-minecraft.pem
