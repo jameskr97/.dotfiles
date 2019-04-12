@@ -2,8 +2,10 @@
 # James Roberts
 
 # General
+export PATH="/usr/local/bin/:$PATH"
 export DOTHOME="${HOME}/.dotfiles"
 export EDITOR="/usr/bin/vim"
+export GPG_TTY=$(tty)
 
 # Homebrew
 export HOMEBREW_CASK_OPTS="--appdir=~/Applications --fontdir=/Library/Fonts"    # Set hombrew options...
@@ -15,3 +17,6 @@ export WORKON_HOME=~/.virtualenvs
 local venv=/usr/bin/python3 && [[ -f /etc/debian_version ]] || local venv=/usr/local/bin/python3
 export VIRTUALENVWRAPPER_PYTHON=$venv
 source /usr/local/bin/virtualenvwrapper.sh
+
+# Ruby Virtual Environments
+eval "$(rbenv init -)"

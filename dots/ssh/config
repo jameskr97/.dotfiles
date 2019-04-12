@@ -8,3 +8,9 @@ Host shenzhen
 Host github.com
 	Hostname github.com
 	IdentityFile ~/.ssh/git
+
+Host tokyo
+	User james
+	Hostname 10.5.0.119
+	IdentityFile ~/.ssh/tokyo
+	PubKeyAuthentication yes
