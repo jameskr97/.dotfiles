@@ -92,6 +92,9 @@ if [[ -f /etc/arch-release ]]; then # Arch specific aliases
 	alias sleep="sudo systemctl suspend"
 fi
 
+# Ignore capitalization for autocomplete
+zstyle ':completion:*' matcher-list 'm:{A-Za-z}={a-zA-Z}'
+
 # All below here is from the prezto completion module.
 # Prezto is cool, but I only really wanted the completion from it.
 # Group matches and describe.
