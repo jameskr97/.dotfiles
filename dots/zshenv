@@ -3,6 +3,7 @@
 
 # General
 export PATH="/usr/local/bin/:$PATH"
+export PATH="/usr/local/opt/llvm/bin:$PATH"
 export DOTHOME="${HOME}/.dotfiles"
 export EDITOR="/usr/bin/vim"
 export GPG_TTY=$(tty)
