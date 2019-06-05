@@ -4,6 +4,7 @@
 # General
 export PATH="/usr/local/bin/:$PATH"
 export PATH="/usr/local/opt/llvm/bin:$PATH"
+export PATH="$HOME/.rbenv/bin:$PATH"
 export DOTHOME="${HOME}/.dotfiles"
 export EDITOR="/usr/bin/vim"
 export GPG_TTY=$(tty)
