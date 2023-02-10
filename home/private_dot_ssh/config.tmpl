@@ -1,0 +1,23 @@
+{{- if eq .chezmoi.os "darwin" }}Host *
+	AddKeysToAgent yes
+	UseKeychain yes
+{{- end }}
+
+Host github.com
+	User git
+	Hostname github.com
+    PreferredAuthentications publickey
+    IdentityFile ~/.ssh/github
+
+Host tokyo
+	User james
+	Hostname tokyo.denden.network
+	PubKeyAuthentication yes
+	IdentityFile ~/.ssh/tokyo.denden
+
+Host crashserver
+	User james
+	Hostname crash.etterna.dev
+	PubKeyAuthentication yes
+	IdentityFile ~/.ssh/crash.etterna.dev
+

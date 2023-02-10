@@ -1,0 +1,36 @@
+#!/bin/bash
+
+{{ $brews := list
+  "starship"
+  "pwgen"
+  "bitwarden-cli"
+
+  "exa"
+  "duf"
+  "tldr"
+  "dog"
+  "lsd"
+
+  "rustup-init"
+-}}
+
+{{ $casks := list 
+  "rar"
+-}}
+
+
+
+
+brew bundle --no-lock --file=/dev/stdin <<EOF
+
+{{ range ($brews | uniq) -}}
+  brew "{{ . }}"
+{{ end -}}
+
+{{ range ($casks | uniq) -}}
+  cask "{{ . }}"
+{{ end -}}
+
+EOF
+
+rustup-init -y --no-modify-path --no-update-default-toolchain >> /dev/null
