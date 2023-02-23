@@ -1,27 +1,49 @@
 #!/bin/bash
 
+# ui related
 {{ $brews := list
+  "sketchybar" # FelixKratz/formulae
+-}}
+
+# cli tools
+{{ $brews = concat $brews (list
   "starship"
   "pwgen"
   "bitwarden-cli"
-
+  "gh"
+  "gnupg"
   "exa"
   "duf"
   "tldr"
   "dog"
   "lsd"
+  "xh"
+  "zoxide"
+) -}}
 
+# development tools
+{{ $brews = concat $brews (list
+  "python3"
+  "virtualenvwrapper"
   "rustup-init"
--}}
+  "cmake"
+  "openssl"
+  "doxygen"
+  "nasm"
+) -}}
 
 {{ $casks := list 
   "rar"
+  "gitkraken"
+  "libreoffice"
+  "orion"
+  "vlc"
 -}}
 
 
-
-
 brew bundle --no-lock --file=/dev/stdin <<EOF
+
+tap "FelixKratz/formulae"
 
 {{ range ($brews | uniq) -}}
   brew "{{ . }}"
@@ -33,4 +55,5 @@ brew bundle --no-lock --file=/dev/stdin <<EOF
 
 EOF
 
+#brew services start sketchybar
 rustup-init -y --no-modify-path --no-update-default-toolchain >> /dev/null
