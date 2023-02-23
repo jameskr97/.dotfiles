@@ -15,6 +15,9 @@ right_format = """$time"""
 [directory]
 style = "blue"
 
+[hostname]
+ssh_only = false
+
 [character]
 success_symbol = "[❯](purple)"
 error_symbol = "[❯](red)"
