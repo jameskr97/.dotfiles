@@ -3,7 +3,7 @@ Host *
 	Ciphers chacha20-poly1305@openssh.com,aes256-gcm@openssh.com,aes128-gcm@openssh.com,aes256-ctr,aes192-ctr,aes128-ctr
 	MACs hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com,umac-128-etm@openssh.com
 	HostKeyAlgorithms ssh-ed25519-cert-v01@openssh.com,ssh-ed25519
-	PreferredAuthentications publickey
+	PreferredAuthentications publickey,password
 	{{- if eq .chezmoi.os "darwin" }}
 	AddKeysToAgent yes
 	UseKeychain yes{{- end }}
@@ -28,5 +28,10 @@ Host crashserver
 Host dns
 	User james
 	Hostname 10.20.0.5
-	IdentityFIle ~/.ssh/rpi
+	IdentityFile ~/.ssh/rpi
 	PubKeyAuthentication yes
+
+Host kevin
+	User james
+	Hostname {{ (bitwardenFields "item" "9c931028-7d6e-4f8c-ad92-c75fab672155").ip.value }}
+	IdentityFile ~/.ssh/kevin
