@@ -2,7 +2,7 @@
 
 # ui related
 {{ $brews := list
-  "sketchybar" # FelixKratz/formulae
+  "sketchybar"
 -}}
 
 # cli tools
@@ -43,7 +43,7 @@
 
 brew bundle --no-lock --file=/dev/stdin <<EOF
 
-tap "FelixKratz/formulae"
+tap "FelixKratz/formulae" # sketchybar
 
 {{ range ($brews | uniq) -}}
   brew "{{ . }}"
