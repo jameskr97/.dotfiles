@@ -1,0 +1,27 @@
+#!/bin/bash
+{{ if eq .chezmoi.osRelease.id "debian" }}
+
+{{ $brews := list
+    "starship"
+    "pwgen"
+    "bitwarden-cli"
+    "gh"
+    "gnupg"
+    "exa"
+    "duf"
+    "tldr"
+    "dog"
+    "lsd"
+    "xh"
+    "zoxide"
+-}}
+
+brew bundle --no-lock --file=/dev/stdin <<EOF
+
+{{ range ($brews | uniq) -}}
+  brew "{{ . }}"
+{{ end -}}
+
+EOF
+
+{{ end }}

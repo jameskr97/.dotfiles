@@ -1,7 +1,13 @@
 # Path Modification
+{{ if eq .chezmoi.os "linx" }}
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+{{ end }}
+
+{{ if eq .chezmoi.os "darwin" }}
 export PATH="/usr/local/bin:$PATH"
 export PATH="/usr/local/opt/llvm/bin:$PATH"
 source "$HOME/.cargo/env"
+{{ end }}
 
 # Misc variables
 export EDITOR="$(which hx)"
