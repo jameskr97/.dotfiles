@@ -24,9 +24,15 @@ alias tree="la --tree"
 alias ..="cd .."
 alias ...="cd ../.."
 
-{{ if eq .chezmoi.os "darwin" }}
+{{- if eq .chezmoi.os "darwin" }}
 # os-specific aliases
 alias flushdns="sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder"
+{{- end }}
+
+{{ if eq .chezmoi.os "linux" -}}
+# keychain for linux and wsl
+/usr/bin/keychain --nogui -q --dir $HOME/.config/keychain
+source $HOME/.config/keychain/{{ .chezmoi.hostname }}-sh
 {{- end }}
 
 # functions
