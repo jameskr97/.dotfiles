@@ -1,20 +1,22 @@
 # Path Modification
-{{ if eq .chezmoi.os "linux" }}
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-{{ end }}
-
-{{ if eq .chezmoi.os "darwin" }}
+{{ if eq .chezmoi.os "darwin" -}}
 export PATH="/usr/local/bin:$PATH"
 export PATH="/usr/local/opt/llvm/bin:$PATH"
 source "$HOME/.cargo/env"
-{{ end }}
+{{- end -}}
+
+{{ if eq .chezmoi.os "linux" -}}
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+{{- end }}
 
 # Misc variables
 export EDITOR="$(which hx)"
 export GPG_TTY=$(tty)
 
 # Homebrew
+{{- if eq .chezmoi.os "darwin" }}
 export HOMEBREW_CASK_OPTS="--appdir=~/Applications --fontdir=/Library/Fonts"
+{{- end }}
 export HOMEBREW_NO_ANALYTICS=1
 export HOMEBREW_NO_EMOJI=1
 
