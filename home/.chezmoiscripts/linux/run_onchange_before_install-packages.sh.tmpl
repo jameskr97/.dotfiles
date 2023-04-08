@@ -1,5 +1,21 @@
 #!/usr/bin/env bash
 {{ if eq .chezmoi.os "linux" -}}
+
+# Determine if sudo is needed
+{{ $sudo := "sudo " -}}
+{{ if eq .chezmoi.username "root" -}}
+{{   $sudo = "" -}}
+{{ end -}}
+
+# Install apt packages
+{{ $apts := list
+  "keychain"
+-}}
+
+{{ $sudo }}apt-get update
+{{ $sudo }}apt-get install -y {{ $apts | join " " }}
+
+# Install homebrew packages
 {{ $brews := list
     "starship"
     "pwgen"
@@ -18,11 +34,11 @@
 -}}
 
 brew bundle --no-lock --file=/dev/stdin <<EOF
-
 {{ range ($brews | uniq) -}}
   brew "{{ . }}"
 {{ end -}}
-
 EOF
+
+
 
 {{ end }}
