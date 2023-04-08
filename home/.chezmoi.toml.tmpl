@@ -1,0 +1,20 @@
+{{/*vars defined to determine how dotfiles are setup*/}}
+{{- $hostname := .chezmoi.hostname -}}
+{{- $personal := false -}}
+
+{{/* taken from gh/twpayne/dotfiles */}}
+{{- $osID := .chezmoi.os -}}
+{{- if (and (eq .chezmoi.os "linux") (hasKey .chezmoi.osRelease "id")) -}}
+{{-   $osID = printf "%s-%s" .chezmoi.os .chezmoi.osRelease.id -}}
+{{- end -}}
+
+{{/* include list of known system, and ask if personal for all other systems */}}
+{{- if eq $hostname "Theta" "Lambda" -}}
+{{-     $personal = true -}}
+{{- else -}}
+{{-     $personal = promptBool "personal" -}}
+{{- end -}}
+
+[data]
+    personal = {{ $personal }}
+    osid = {{ $osID | quote }}
