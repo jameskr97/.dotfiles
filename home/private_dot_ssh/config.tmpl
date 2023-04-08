@@ -1,3 +1,4 @@
+{{- if .personal -}}
 Host *
 	KexAlgorithms curve25519-sha256@libssh.org,diffie-hellman-group-exchange-sha256
 	Ciphers chacha20-poly1305@openssh.com,aes256-gcm@openssh.com,aes128-gcm@openssh.com,aes256-ctr,aes192-ctr,aes128-ctr
@@ -35,3 +36,4 @@ Host kevin
 	User james
 	Hostname {{ (bitwardenFields "item" "9c931028-7d6e-4f8c-ad92-c75fab672155").ip.value }}
 	IdentityFile ~/.ssh/kevin
+{{ end }}
