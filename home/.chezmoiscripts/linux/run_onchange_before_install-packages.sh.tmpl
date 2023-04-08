@@ -1,6 +1,5 @@
-#!/bin/bash
-{{ if eq .chezmoi.osRelease.id "debian" }}
-
+#!/usr/bin/env bash
+{{ if eq .chezmoi.os "linux" -}}
 {{ $brews := list
     "starship"
     "pwgen"
@@ -14,6 +13,8 @@
     "lsd"
     "xh"
     "zoxide"
+    "zsh"
+    "zsh-completions"
 -}}
 
 brew bundle --no-lock --file=/dev/stdin <<EOF
