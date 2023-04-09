@@ -40,7 +40,7 @@ alias flushdns="sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder"
 
 {{ if eq .chezmoi.os "linux" -}}
 # keychain for linux and wsl
-{{ if (lookPath "keychain") }}
+{{ if lookPath "keychain" }}
   /usr/bin/keychain --nogui -q --dir $HOME/.config/keychain
 {{ else }}
   log_info "keychain not installed"
