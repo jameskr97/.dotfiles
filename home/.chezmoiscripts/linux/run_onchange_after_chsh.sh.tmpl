@@ -1,6 +1,5 @@
 {{- if .personal -}}
-#!/bin/bash
+#!/usr/bin/env bash
 set -eufo pipefail
-
 chsh -s /usr/bin/zsh
-{{ end -}}
+{{- end -}}
