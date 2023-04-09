@@ -3,7 +3,7 @@
 {{- $hostname := .chezmoi.hostname -}}
 {{- $personal := false -}} {{/* should get secrets */}}
 {{- $packages := false -}} {{/* should install packages */}}
-
+{{- $nas      := false -}} {{/* true if server is nas */}}
 
 {{/* taken from gh/twpayne/dotfiles */}}
 {{- $osID := .chezmoi.os -}}
@@ -12,15 +12,21 @@
 {{- end -}}
 
 {{/* include list of known system, and ask if personal for all other systems */}}
-{{- if eq $hostname "Theta" "Lambda" -}}
+{{- if eq $hostname "Theta" "Lambda" "nas" -}}
 {{-     $personal = true -}}
 {{- else -}}
 {{-     $personal = promptBool "personal" -}}
 {{- end -}}
+
+{{- if eq $hostname "nas" -}}
+{{-     $nas = true -}}
+{{- end -}}
+
 
 {{- $packages = promptBool "Install pacakges" -}}
 
 [data]
     personal = {{ $personal }}
     packages = {{ $packages }}
+    nas = {{ $nas }}
     osid = {{ $osID | quote }}

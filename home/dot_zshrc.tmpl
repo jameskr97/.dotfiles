@@ -65,3 +65,12 @@ bw-open() {
   fi
   export BW_SESSION
 }
+
+snapraid_cmd=$(which snapraid)
+snapraid() {
+  if [[ $1 == "smart" ]]; then
+      command sudo "$snapraid_cmd" smart
+  else
+      command snapraid "$@"
+  fi
+}
