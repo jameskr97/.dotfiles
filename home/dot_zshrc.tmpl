@@ -1,8 +1,12 @@
 eval "$(starship init zsh)"  # Activate starship
 
-setopt CORRECT  # Attempt to correct a command when you enter it incorrectly
+# Helpers
+include () {
+    [[ -f "$1" ]] && source "$1"
+}
 
 # History
+setopt CORRECT                      # Attempt to correct a command when you enter it incorrectly
 HISTSIZE=5000                       # How many lines of history to keep in memory
 HISTFILE=~/.config/zsh_history      # Where to save history to disk
 SAVEHIST=5000                       # Number of history entries to save to disk
@@ -20,6 +24,12 @@ alias ll="exa -l"
 alias la="exa -la"
 alias tree="la --tree"
 
+alias dc="docker-compose"
+alias dcul='f(){ dc up -d "$1"; dc logs -f "$1"; unset -f f; }; f'
+alias dcr='f(){ dc restart "$1"; dc logs -f "$1"; unset -f f; }; f'
+alias dcremake='f(){ dc stop "$1"; dc rm -f "$1"; dc up -d "$1"; dc logs -f "$1"; unset -f f; }; f'
+alias dcl='f(){ dc logs -f --tail 30 "$1"; unset -f f; }; f'
+
 # cd aliases
 alias ..="cd .."
 alias ...="cd ../.."
@@ -32,7 +42,10 @@ alias flushdns="sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder"
 {{ if eq .chezmoi.os "linux" -}}
 # keychain for linux and wsl
 /usr/bin/keychain --nogui -q --dir $HOME/.config/keychain
-source $HOME/.config/keychain/{{ .chezmoi.hostname }}-sh
+include $HOME/.config/keychain/{{ .chezmoi.hostname }}-sh
+
+include /home/linuxbrew/.linuxbrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+# zsh-compltions
 {{- end }}
 
 # functions
