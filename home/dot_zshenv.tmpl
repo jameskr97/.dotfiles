@@ -23,6 +23,6 @@ export HOMEBREW_NO_EMOJI=1
 # Python Virtual Environments
 export WORKON_HOME=~/.virtualenvs
 {{ if eq .chezmoi.os "darwin" }}local venv=/usr/local/bin/python3
-{{ else if eq .chezmoi.os "linux" }}local venn=/usr/bin/python3
+{{ else if eq .chezmoi.os "linux" }}local venv=/usr/bin/python3
 {{ end }}export VIRTUALENVWRAPPER_PYTHON=$venv
 [[ -f /usr/local/bin/virtualenvwrapper.sh ]] && source /usr/local/bin/virtualenvwrapper.sh
