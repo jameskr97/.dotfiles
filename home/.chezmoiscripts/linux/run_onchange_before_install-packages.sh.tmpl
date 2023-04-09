@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-{{ if eq .chezmoi.os "linux" -}}
+{{ if .packages }}
 
 # Determine if sudo is needed
 {{ $sudo := "sudo " -}}
@@ -37,7 +37,5 @@ brew bundle --no-lock --file=/dev/stdin <<EOF
   brew "{{ . }}"
 {{ end -}}
 EOF
-
-
 
 {{ end }}

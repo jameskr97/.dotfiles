@@ -1,6 +1,9 @@
 {{/*vars defined to determine how dotfiles are setup*/}}
+
 {{- $hostname := .chezmoi.hostname -}}
-{{- $personal := false -}}
+{{- $personal := false -}} {{/* should get secrets */}}
+{{- $packages := false -}} {{/* should install packages */}}
+
 
 {{/* taken from gh/twpayne/dotfiles */}}
 {{- $osID := .chezmoi.os -}}
@@ -15,6 +18,9 @@
 {{-     $personal = promptBool "personal" -}}
 {{- end -}}
 
+{{- $packages = promptBool "Install pacakges" -}}
+
 [data]
     personal = {{ $personal }}
+    packages = {{ $packages }}
     osid = {{ $osID | quote }}

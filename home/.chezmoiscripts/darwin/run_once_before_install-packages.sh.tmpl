@@ -1,5 +1,5 @@
 #!/bin/bash
-
+{{ if .packages }}
 # ui related
 {{ $brews := list
   "sketchybar"
@@ -57,3 +57,5 @@ EOF
 
 #brew services start sketchybar
 rustup-init -y --no-modify-path --no-update-default-toolchain >> /dev/null
+
+{{ end }}
