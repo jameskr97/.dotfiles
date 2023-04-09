@@ -1,9 +1,8 @@
 eval "$(starship init zsh)"  # Activate starship
 
 # Helpers
-include () {
-    [[ -f "$1" ]] && source "$1"
-}
+include () { [[ -f "$1" ]] && source "$1" }
+log_info () { echo "\t\e[36m*\e[0m $1"}
 
 # History
 setopt CORRECT                      # Attempt to correct a command when you enter it incorrectly
@@ -43,6 +42,8 @@ alias flushdns="sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder"
 # keychain for linux and wsl
 {{ if (lookPath "keychain") }}
   /usr/bin/keychain --nogui -q --dir $HOME/.config/keychain
+{{ else }}
+  log_info "keychain not installed"
 {{ end }}
 include $HOME/.config/keychain/{{ .chezmoi.hostname }}-sh
 
