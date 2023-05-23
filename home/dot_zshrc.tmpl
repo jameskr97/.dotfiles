@@ -23,7 +23,11 @@ alias ll="exa -l"
 alias la="exa -la"
 alias tree="la --tree"
 
-alias dc="docker-compose"
+{{ if lookPath "docker-compose" -}}
+    alias dc="docker-compose"
+{{ else }}
+    alias dc="docker compose"
+{{ end -}}
 alias dcul='f(){ dc up -d "$1"; dc logs -f "$1"; unset -f f; }; f'
 alias dcr='f(){ dc restart "$1"; dc logs -f "$1"; unset -f f; }; f'
 alias dcremake='f(){ dc stop "$1"; dc rm -f "$1"; dc up -d "$1"; dc logs -f "$1"; unset -f f; }; f'
