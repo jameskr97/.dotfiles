@@ -1,8 +1,12 @@
 # Path Modification
 {{ if eq .chezmoi.os "darwin" -}}
+# for Jetbrains Toolbox
+export PATH="$PATH:/Users/james/Library/Application Support/JetBrains/Toolbox/scripts"
+export PATH="/opt/homebrew/bin:$PATH"
 export PATH="/usr/local/bin:$PATH"
 export PATH="/usr/local/opt/llvm/bin:$PATH"
 source "$HOME/.cargo/env"
+source "virtualenvwrapper.sh"
 {{- end -}}
 
 {{ if eq .chezmoi.os "linux" -}}
