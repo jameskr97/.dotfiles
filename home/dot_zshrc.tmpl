@@ -25,7 +25,7 @@ alias tree="la --tree"
 
 {{ if lookPath "docker-compose" -}}
     alias dc="docker-compose"
-{{ else }}
+{{ else -}}
     alias dc="docker compose"
 {{ end -}}
 alias dcul='f(){ dc up -d "$1"; dc logs -f "$1"; unset -f f; }; f'
@@ -38,7 +38,6 @@ alias dcl='f(){ dc logs -f --tail 30 "$1"; unset -f f; }; f'
 {{ if eq .chezmoi.hostname "nas" }}alias cdf='f(){ pushd /srv/storage/*/*/${1}*; unset -f f; }; f'
 {{- else }}alias cdf='f(){ pushd /mnt/nas/*/*/${1}*; unset -f f; }; f'
 {{- end }}
-
 
 # cd aliases
 alias ..="cd .."
