@@ -18,16 +18,16 @@ setopt HIST_REDUCE_BLANKS           # Remove extra blanks from each command line
 setopt HIST_FIND_NO_DUPS            # When searching history don't display results already cycled through twice
 
 # command aliases
-alias ls="exa"
-alias ll="exa -l"
-alias la="exa -laa"
-alias tree="la --tree"
+alias ls="eza"
+alias ll="eza -l"
+alias la="eza -laa"
+alias tree="eza --tree"
 
 {{ if lookPath "docker-compose" -}}
     alias dc="docker-compose"
-{{ else -}}
+{{- else -}}
     alias dc="docker compose"
-{{ end -}}
+{{- end }}
 alias dcul='f(){ dc up -d "$1"; dc logs -f "$1"; unset -f f; }; f'
 alias dcr='f(){ dc restart "$1"; dc logs -f "$1"; unset -f f; }; f'
 alias dcremake='f(){ dc stop "$1"; dc rm -f "$1"; dc up -d "$1"; dc logs -f "$1"; unset -f f; }; f'
