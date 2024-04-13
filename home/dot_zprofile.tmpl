@@ -1,0 +1,54 @@
+function add_to_path {
+  if [[ ":$PATH:" != *":$1:"* ]]; then
+    PATH="$1:$PATH"
+    export PATH
+  fi
+}
+
+function source_if_exists {
+  if [ -f "$1" ]; then
+    source "$1"
+  fi
+}
+
+
+# Path Modification
+{{ if eq .chezmoi.os "darwin" -}}
+# for Jetbrains Toolbox
+add_to_path "/Users/james/Library/Application Support/JetBrains/Toolbox/scripts"
+add_to_path "/opt/homebrew/bin"
+add_to_path "/usr/local/opt/llvm/bin"
+add_to_path "/usr/local/bin"
+
+source_if_exists "/Users/james/.bun/_bun"
+
+if [ -f "$HOME/bun" ]; then
+    export BUN_INSTALL="$HOME/.bun"
+    add_to_path "$BUN_INSTALL/bin"
+fi
+
+
+source "$HOME/.cargo/env"
+source "virtualenvwrapper.sh"
+{{- end -}}
+
+
+{{ if eq .chezmoi.os "linux" -}}
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+{{- end }}
+
+# Misc variables
+export EDITOR="$(which vim)"
+export GPG_TTY=$(tty)
+
+# Homebrew
+{{- if eq .chezmoi.os "darwin" }}
+export HOMEBREW_CASK_OPTS="--appdir=~/Applications --fontdir=/Library/Fonts"
+{{- end }}
+export HOMEBREW_NO_ANALYTICS=1
+export HOMEBREW_NO_EMOJI=1
+
+# Python Virtual Environments
+export WORKON_HOME=~/.virtualenvs
+export VIRTUALENVWRAPPER_PYTHON=$(which python3)
+source_if_exists "/opt/homebrew/bin/virtualenvwrapper.sh"
