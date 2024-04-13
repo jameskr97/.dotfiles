@@ -1,6 +1,5 @@
 {{- if .personal }}
 Host *
-	PreferredAuthentications publickey,password
 	{{- if eq .chezmoi.os "darwin" }}
 	AddKeysToAgent yes
 	UseKeychain yes{{- end }}
