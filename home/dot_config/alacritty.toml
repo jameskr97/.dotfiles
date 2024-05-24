@@ -1,0 +1,14 @@
+# config: https://alacritty.org/config-alacritty.html
+
+[window]
+opacity = 1.0
+title = ""
+
+[font]
+normal = { family = "JetBrainsMono Nerd Font" }
+size = 18
+offset = { y = -10 }
+
+[mouse]
+hide_when_typing = true
+
