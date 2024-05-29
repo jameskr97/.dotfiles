@@ -1,6 +1,5 @@
 format = """
-[Δ](bold green) \
-$hostname\
+[{{ .symbol }}](bold red) \
 $directory\
 $git_branch\
 $git_state\
@@ -11,6 +10,10 @@ $character"""
 
 right_format = """$time"""
 add_newline = true
+
+[localip]
+ssh_only = false
+disabled = false
 
 [directory]
 style = "blue"
