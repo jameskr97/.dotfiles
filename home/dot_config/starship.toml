@@ -1,16 +1,15 @@
 format = """
-$username\
-$hostname\
+[Δ](bold green) \
 $directory\
 $git_branch\
 $git_state\
 $git_status\
 $cmd_duration\
-$line_break\
 $python\
 $character"""
 
 right_format = """$time"""
+add_newline = true
 
 [directory]
 style = "blue"
@@ -59,4 +58,5 @@ time_format = '%T %D'
 utc_time_offset = '-5'
 time_range = '-'
 style = "yellow"
+
 
