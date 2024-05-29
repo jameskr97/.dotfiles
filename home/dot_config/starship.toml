@@ -1,5 +1,6 @@
 format = """
 [Δ](bold green) \
+$hostname\
 $directory\
 $git_branch\
 $git_state\
