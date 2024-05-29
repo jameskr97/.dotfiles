@@ -2,12 +2,12 @@
 
 [window]
 opacity = 1.0
-title = ""
+option_as_alt = "OnlyLeft"
 
 [font]
 normal = { family = "JetBrainsMono Nerd Font" }
 size = 18
-offset = { y = -10 }
+offset = { y = -3 }
 
 [mouse]
 hide_when_typing = true
