@@ -1,25 +1,20 @@
 #!/bin/bash
 {{ if .packages }}
-# ui related
 {{ $brews := list
-  "sketchybar"
--}}
-
-# cli tools
-{{ $brews = concat $brews (list
   "starship"
   "pwgen"
   "bitwarden-cli"
   "gh"
   "gnupg"
-  "exa"
+  "eza"
   "duf"
   "tldr"
   "dog"
   "lsd"
   "xh"
   "zoxide"
-) -}}
+  "lazygit"
+ -}}
 
 # development tools
 {{ $brews = concat $brews (list
@@ -32,25 +27,14 @@
   "nasm"
 ) -}}
 
-{{ $casks := list 
-  "rar"
-  "gitkraken"
-  "libreoffice"
-  "orion"
-  "vlc"
+{{ $casks := list
+    "alacritty"
 -}}
-
 
 brew bundle --no-lock --file=/dev/stdin <<EOF
 
-tap "FelixKratz/formulae" # sketchybar
-
 {{ range ($brews | uniq) -}}
   brew "{{ . }}"
-{{ end -}}
-
-{{ range ($casks | uniq) -}}
-  cask "{{ . }}"
 {{ end -}}
 
 EOF
