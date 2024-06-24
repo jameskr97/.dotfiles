@@ -1,5 +1,4 @@
--- Editor Configuraiton
----- Leader Shortcut `:help mapleader`
+-- Editor Configuraiton - Leader Shortcut `:help mapleader`
 vim.g.swapfile = false      -- Disable swap file
 vim.g.mapleader = ' '       -- Leader keymap for personal shortcuts
 vim.g.maplocalleader = ' '  -- Local leader for plugin specific shortcuts (?)
@@ -33,6 +32,7 @@ vim.opt.incsearch = true                                -- Incrementally highlig
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')     -- Press escape to remove highlights
 vim.opt.inccommand = 'split'                            -- When doing a %s replace, show the replacements in a split box above command line
 -- Key Remapping
+vim.keymap.set('n', '<leader>w', ':w<CR>')      -- Save file
 ---- Selection Commands
 vim.keymap.set('n', '<C-a>', 'gg<S-a>G')
 ---- Window moving commands
