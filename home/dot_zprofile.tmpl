@@ -1,3 +1,5 @@
+# vim: set ft=bash :
+
 function add_to_path {
   if [[ ":$PATH:" != *":$1:"* ]]; then
     PATH="$1:$PATH"
@@ -11,45 +13,43 @@ function source_if_exists {
   fi
 }
 
-
-# Path Modification
-{{ if eq .chezmoi.os "darwin" -}}
-# for Jetbrains Toolbox
-add_to_path "/Users/james/Library/Application Support/JetBrains/Toolbox/scripts"
-add_to_path "/opt/homebrew/bin"
-add_to_path "/usr/local/opt/llvm/bin"
-add_to_path "/usr/local/bin"
-
-source_if_exists "/Users/james/.bun/_bun"
-source_if_exists "/usr/local/bin/virtualenvwrapper.sh"
-
-if [ -f "$HOME/bun" ]; then
-    export BUN_INSTALL="$HOME/.bun"
-    add_to_path "$BUN_INSTALL/bin"
-fi
-
-
-source "$HOME/.cargo/env"
-source "virtualenvwrapper.sh"
-{{- end -}}
-
-
-{{ if eq .chezmoi.os "linux" -}}
-eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-{{- end }}
-
-# Misc variables
+# Environment variable exports
+## Misc variables
 export EDITOR="$(which nvim)"
 export GPG_TTY=$(tty)
+export XDG_CONFIG_HOME="$HOME/.config"
 
-# Homebrew
+## Homebrew
 {{- if eq .chezmoi.os "darwin" }}
 export HOMEBREW_CASK_OPTS="--appdir=~/Applications --fontdir=/Library/Fonts"
 {{- end }}
 export HOMEBREW_NO_ANALYTICS=1
 export HOMEBREW_NO_EMOJI=1
 
-# Python Virtual Environments
-export WORKON_HOME=~/.virtualenvs
-export VIRTUALENVWRAPPER_PYTHON=$(which python3)
-source_if_exists "/opt/homebrew/bin/virtualenvwrapper.sh"
+## python virtualenvironments
+export WORKON_HOME=$HOME/.virtualenvs
+export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
+export VIRTUALENVWRAPPER_VIRTUALENV=/usr/local/bin/virtualenv
+source_if_exists "/usr/local/bin/virtualenvwrapper.sh"
+
+# Path Modification
+{{ if eq .chezmoi.os "darwin" -}}
+add_to_path "/Users/james/Library/Application Support/JetBrains/Toolbox/scripts" # for JetBrains Toolbox
+add_to_path "/opt/homebrew/bin"
+add_to_path "/usr/local/opt/llvm/bin"
+add_to_path "/usr/local/bin"
+add_to_path "$HOME/.cargo/bin"
+source_if_exists "$HOME/.cargo/env"
+source_if_exists "/Users/james/.bun/_bun"
+
+if [ -f "$HOME/bun" ]; then
+    export BUN_INSTALL="$HOME/.bun"
+    add_to_path "$BUN_INSTALL/bin"
+fi
+
+{{- end -}}
+
+{{ if eq .chezmoi.os "linux" -}}
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+{{- end }}
+
