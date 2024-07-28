@@ -13,11 +13,25 @@ function source_if_exists {
   fi
 }
 
+# Path Modification
+{{ if eq .chezmoi.os "darwin" -}}
+add_to_path "/Users/james/Library/Application Support/JetBrains/Toolbox/scripts" # for JetBrains Toolbox
+{{- end }}
+add_to_path "/opt/homebrew/bin"
+add_to_path "/usr/local/opt/llvm/bin"
+add_to_path "/usr/local/bin"
+add_to_path "$HOME/.cargo/bin"
+add_to_path "/opt/homebrew/sbin"
+add_to_path "/Users/james/.local/bin"
+source_if_exists "$HOME/.cargo/env"
+source_if_exists "/Users/james/.bun/_bun"
+
 # Environment variable exports
 ## Misc variables
 export EDITOR="$(which nvim)"
 export GPG_TTY=$(tty)
 export XDG_CONFIG_HOME="$HOME/.config"
+export OPENSSL_ROOT_DIR="$(brew --prefix openssl)"
 
 ## Homebrew
 {{- if eq .chezmoi.os "darwin" }}
@@ -28,19 +42,8 @@ export HOMEBREW_NO_EMOJI=1
 
 ## python virtualenvironments
 export WORKON_HOME=$HOME/.virtualenvs
-export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
-export VIRTUALENVWRAPPER_VIRTUALENV=/usr/local/bin/virtualenv
-source_if_exists "/usr/local/bin/virtualenvwrapper.sh"
-
-# Path Modification
-{{ if eq .chezmoi.os "darwin" -}}
-add_to_path "/Users/james/Library/Application Support/JetBrains/Toolbox/scripts" # for JetBrains Toolbox
-add_to_path "/opt/homebrew/bin"
-add_to_path "/usr/local/opt/llvm/bin"
-add_to_path "/usr/local/bin"
-add_to_path "$HOME/.cargo/bin"
-source_if_exists "$HOME/.cargo/env"
-source_if_exists "/Users/james/.bun/_bun"
+export VIRTUALENVWRAPPER_PYTHON=/opt/homebrew/bin/python3
+source_if_exists "/opt/homebrew/bin/virtualenvwrapper.sh"
 
 if [ -f "$HOME/bun" ]; then
     export BUN_INSTALL="$HOME/.bun"
