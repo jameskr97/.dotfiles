@@ -1,6 +1,7 @@
 # vim: set ft=bash :
-eval "$(starship init zsh)"  # Activate starship
-eval "$(fzf --zsh)"
+eval "$(starship init zsh)"     # Activate starship
+eval "$(fzf --zsh)"             # Activate fzf
+eval "$(direnv hook zsh)"       # Activate direnv
 
 # Helpers
 include () { [[ -f "$1" ]] && source "$1" }

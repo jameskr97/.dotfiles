@@ -50,8 +50,6 @@ if [ -f "$HOME/bun" ]; then
     add_to_path "$BUN_INSTALL/bin"
 fi
 
-{{- end -}}
-
 {{ if eq .chezmoi.os "linux" -}}
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 {{- end }}
